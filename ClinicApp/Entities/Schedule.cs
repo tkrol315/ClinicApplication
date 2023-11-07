@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Entities
 {
-    internal class Schedule
+    public class Schedule
     {
         public int Id { get; set; }
         public DateTime From { get; set; }

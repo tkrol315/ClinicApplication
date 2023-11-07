@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Entities
 {
-    internal class Request
+    public class Request
     {
         public int Id { get; set; }
         public int UserId { get; set; }

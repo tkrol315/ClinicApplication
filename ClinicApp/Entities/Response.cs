@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Entities
 {
-    internal class Response
+    public class Response
     {
         public int Id { get; set; }
         public int UserId { get; set; }

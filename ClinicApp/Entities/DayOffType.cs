@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Entities
 {
-    internal class DayOffType
+    public class DayOffType
     {
         public int Id { get; set; }
         public string Name { get; set; }

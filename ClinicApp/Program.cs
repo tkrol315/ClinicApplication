@@ -1,17 +1,29 @@
+using ClinicApp.DependencyInjection;
+using ClinicApp.Seeders;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 namespace ClinicApp
 {
-    internal static class Program
+    public static class Program
     {
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
+
+        public static IServiceProvider ServiceProvider { get; private set; }
         [STAThread]
-        static void Main()
+        static async Task Main()
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginForm());
+            ServiceProvider = MainDependencyInjection.CreateHostBuilder().Build().Services;
+            var seeder = ServiceProvider.GetRequiredService<Seeder>();
+            await seeder.Seed();
+            var form = ServiceProvider.GetRequiredService<LoginForm>();
+            Application.Run(form);
+
         }
     }
 }
