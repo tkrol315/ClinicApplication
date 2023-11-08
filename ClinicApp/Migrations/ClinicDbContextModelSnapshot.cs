@@ -135,6 +135,9 @@ namespace ClinicApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StartForm")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Roles");

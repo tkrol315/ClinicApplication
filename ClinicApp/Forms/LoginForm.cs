@@ -1,10 +1,13 @@
 using ClinicApp.Entities;
+using ClinicApp.Enums;
 using ClinicApp.Forms;
 using ClinicApp.Forms.AdministratorForms;
 using ClinicApp.Forms.ManagerForms;
 using ClinicApp.Forms.ReceptionistForms;
+using ClinicApp.Repositories.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System.ComponentModel.DataAnnotations;
 
 namespace ClinicApp
@@ -13,13 +16,21 @@ namespace ClinicApp
     {
         private readonly ClinicDbContext _dbContext;
         private readonly IPasswordHasher<User> _passwordHasher;
-        public User LoggedUser { get; set; }
+        private readonly IUserRepository _userRepository;
+        private readonly IServiceProvider _serviceProvider;
+        private readonly IDayOffTypeRepository _dayOffTypeRepository;
 
-        public LoginForm(ClinicDbContext dbContext, IPasswordHasher<User> passwordHasher)
+        public LoginForm(ClinicDbContext dbContext,
+            IPasswordHasher<User> passwordHasher,
+            IUserRepository userRepository,
+            IServiceProvider serviceProvider
+          )
         {
             InitializeComponent();
             _dbContext = dbContext;
             _passwordHasher = passwordHasher;
+            _userRepository = userRepository;
+            _serviceProvider = serviceProvider;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -32,45 +43,48 @@ namespace ClinicApp
                 Password_TB.UseSystemPasswordChar = true;
         }
 
-        private async Task<bool> Login()
+        private async Task<User> Login()
         {
-            var user = await _dbContext.Users.Include(u => u.Role).FirstOrDefaultAsync(u => u.Login == Login_TB.Text);
+            var user = await _userRepository.GetUserByLoginWithRole(Login_TB.Text);
             if (user is null)
             {
                 MessageBox.Show("Nieprawidlowy login lub haslo");
-                return false;
+                return null;
             }
             var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, Password_TB.Text);
             if (result is PasswordVerificationResult.Failed)
             {
                 MessageBox.Show("Nieprawidlowy login lub haslo");
-                return false;
+                return null;
             }
-            LoggedUser = user;
-            MessageBox.Show("Udalo sie zalogowac");
-            return true;
+            return user;
         }
         private async void Login_BTN_Click(object sender, EventArgs e)
         {
-            var result = await Login();
-           
-            //var bwf = new BasicWorkerApplicationForm();
-            // bwf.ShowDialog();
-            // var raf = new ReceptionistApplicationForm();
-            // raf.ShowDialog();
-            // var rrf = new RequestReceptionistForm();
-            // rrf.ShowDialog();
-            // var wsf = new WorkScheduleForm(); 
-            // wsf.ShowDialog();
-            // var mmf = new ManagerMainForm();
-            // mmf.ShowDialog();
-            // var asf = new AssignSubstitutionForm();
-            // asf.ShowDialog();
-            // var maf = new MainAdministratorForm();
-            // maf.ShowDialog();
-            // var ewf = new EditWorkerForm(); 
-            // ewf.ShowDialog();
-
+            var user = await Login();
+            if (user is null) return;
+            var startForm = user.Role.StartForm;
+            Form form;
+            switch (startForm)
+            {
+                case StartForm.BasicWorkerApplicationForm:
+                    form = _serviceProvider.GetRequiredService<BasicWorkerApplicationForm>();
+                    break;
+                case StartForm.ReceptionistApplicationForm:
+                    form = _serviceProvider.GetRequiredService<ReceptionistApplicationForm>();
+                    break;
+                case StartForm.ManagerMainForm:
+                    form = _serviceProvider.GetRequiredService<ManagerMainForm>();
+                    break;
+                case StartForm.MainAdministratorForm:
+                    form = _serviceProvider.GetRequiredService<MainAdministratorForm>();
+                    break;
+                default:
+                    return;
+            }
+            Hide();
+            form.FormClosed += (sender, e) => Application.Exit();
+            form.Show();
         }
     }
 }

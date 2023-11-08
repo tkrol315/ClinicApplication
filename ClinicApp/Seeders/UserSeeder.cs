@@ -1,7 +1,6 @@
 ﻿using ClinicApp.Entities;
 using ClinicApp.Seeders.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Seeders
 {
-    public class Seeder : ISeeder
+    public class UserSeeder : ISeeder
     {
         private readonly ClinicDbContext _dbContext;
         private readonly IPasswordHasher<User> _passwordHasher;
 
-        public Seeder(ClinicDbContext dbContext, IPasswordHasher<User> passwordHasher)
+        public UserSeeder(ClinicDbContext dbContext, IPasswordHasher<User> passwordHasher)
         {
             _dbContext = dbContext;
             _passwordHasher = passwordHasher;
@@ -23,17 +22,6 @@ namespace ClinicApp.Seeders
 
         public async Task Seed()
         {
-            if (_dbContext.Database.GetMigrations().Any())
-            {
-                _dbContext.Database.Migrate();
-                await _dbContext.SaveChangesAsync();
-            }
-            if (!_dbContext.Roles.Any())
-            {
-                var roles = GetRoles();
-                _dbContext.Roles.AddRange(roles);
-                await _dbContext.SaveChangesAsync();
-            }
             if (!_dbContext.Users.Any())
             {
                 var users = GetUsers();
@@ -41,29 +29,7 @@ namespace ClinicApp.Seeders
                 await _dbContext.SaveChangesAsync();
             }
         }
-        private IEnumerable<Role> GetRoles()
-        {
-            var roles = new List<Role>()
-            {
-                new Role()
-                {
-                    Name = "Worker",
-                },
-                new Role()
-                {
-                    Name = "Receptionist",
-                },
-                new Role()
-                {
-                    Name = "Manager",
-                },
-                new Role()
-                {
-                    Name = "Admin",
-                }
-            };
-            return roles;
-        }
+
         private IEnumerable<User> GetUsers()
         {
             var users = new List<User>()
@@ -111,6 +77,5 @@ namespace ClinicApp.Seeders
             }
             return users;
         }
-
     }
 }

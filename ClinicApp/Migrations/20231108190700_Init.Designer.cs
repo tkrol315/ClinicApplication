@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClinicApp.Migrations
 {
     [DbContext(typeof(ClinicDbContext))]
-    [Migration("20231107230302_Init")]
+    [Migration("20231108190700_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -137,6 +137,9 @@ namespace ClinicApp.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StartForm")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

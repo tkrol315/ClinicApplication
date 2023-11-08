@@ -1,4 +1,7 @@
 ﻿using ClinicApp.Entities;
+using ClinicApp.Repositories;
+using ClinicApp.Repositories.Interfaces;
+using ClinicApp.Seeders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +30,8 @@ namespace ClinicApp.DependencyInjection
                     services.AddSeedersDependencyInjection();
                     services.AddDbContext<ClinicDbContext>(options => options.UseSqlServer(_connectionString));
                     services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
-
+                    services.AddScoped<IUserRepository, UserRepository>();
+                    services.AddScoped<IDayOffTypeRepository, DayOffTypeRepository>();
                 });
         }
     }

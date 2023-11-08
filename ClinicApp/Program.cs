@@ -1,4 +1,5 @@
 using ClinicApp.DependencyInjection;
+using ClinicApp.Entities;
 using ClinicApp.Seeders;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,8 +20,8 @@ namespace ClinicApp
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             ServiceProvider = MainDependencyInjection.CreateHostBuilder().Build().Services;
-            var seeder = ServiceProvider.GetRequiredService<Seeder>();
-            await seeder.Seed();
+            var seeder = ServiceProvider.GetRequiredService<SeederInit>();
+            await seeder.Init();
             var form = ServiceProvider.GetRequiredService<LoginForm>();
             Application.Run(form);
 

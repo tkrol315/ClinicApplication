@@ -1,4 +1,5 @@
-﻿using ClinicApp.Seeders.Interfaces;
+﻿using ClinicApp.Seeders;
+using ClinicApp.Seeders.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace ClinicApp.DependencyInjection
             {
                 service.AddTransient(seeder);
             }
+            service.AddTransient<SeederInit>();
             return service;
         }
     }

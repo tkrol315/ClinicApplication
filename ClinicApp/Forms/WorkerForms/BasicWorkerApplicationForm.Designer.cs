@@ -95,6 +95,7 @@
             // BasicWorkerDayoffType_CB
             // 
             BasicWorkerDayoffType_CB.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            BasicWorkerDayoffType_CB.DropDownStyle = ComboBoxStyle.DropDownList;
             BasicWorkerDayoffType_CB.FormattingEnabled = true;
             BasicWorkerDayoffType_CB.Location = new Point(596, 36);
             BasicWorkerDayoffType_CB.Name = "BasicWorkerDayoffType_CB";
