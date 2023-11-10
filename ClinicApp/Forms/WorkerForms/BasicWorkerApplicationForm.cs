@@ -34,5 +34,9 @@ namespace ClinicApp.Forms
             BasicWorkerDayoffType_CB.SelectedIndex = 0;
         }
 
+        private void SendRequest_BTN_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

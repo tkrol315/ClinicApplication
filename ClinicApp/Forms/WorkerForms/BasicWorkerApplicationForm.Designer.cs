@@ -81,6 +81,7 @@
             SendRequest_BTN.TabIndex = 4;
             SendRequest_BTN.Text = "Wyslij";
             SendRequest_BTN.UseVisualStyleBackColor = true;
+            SendRequest_BTN.Click += SendRequest_BTN_Click;
             // 
             // label2
             // 

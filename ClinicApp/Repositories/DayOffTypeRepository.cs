@@ -10,11 +10,13 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Repositories
 {
-    public class DayOffTypeRepository : IDayOffTypeRepository
+    public class DayOffTypeRepository 
+        : RepositoryAsync<DayOffType>, IDayOffTypeRepository
     {
         private readonly ClinicDbContext _dbContext;
 
         public DayOffTypeRepository(ClinicDbContext dbContext) 
+            : base(dbContext) 
         {
             _dbContext = dbContext;
         }

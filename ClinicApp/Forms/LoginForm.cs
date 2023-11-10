@@ -63,6 +63,7 @@ namespace ClinicApp
         {
             var user = await Login();
             if (user is null) return;
+            UserSession.CurrentUser = user;
             var startForm = user.Role.StartForm;
             Form form;
             switch (startForm)
