@@ -103,6 +103,7 @@
             RequestDateFrom_CB.Name = "RequestDateFrom_CB";
             RequestDateFrom_CB.Size = new Size(148, 23);
             RequestDateFrom_CB.TabIndex = 5;
+            RequestDateFrom_CB.SelectedIndexChanged += DateFrom_SelectedIndexChanged;
             // 
             // RequestDateTo_CB
             // 
@@ -170,6 +171,8 @@
             Controls.Add(label1);
             Controls.Add(RequestReply_RTB);
             Controls.Add(RequestContent_RTB);
+            MaximumSize = new Size(1122, 641);
+            MinimumSize = new Size(847, 525);
             Name = "RequestReceptionistForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Wniosek";

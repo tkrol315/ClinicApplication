@@ -17,7 +17,9 @@ namespace ClinicApp.DependencyInjection
             var seeders = Assembly
                 .GetExecutingAssembly()
                 .GetTypes()
-                .Where(x => x.GetInterfaces().Contains(typeof(ISeeder)))
+                .Where(x => typeof(ISeeder).IsAssignableFrom(x) 
+                && !x.IsInterface
+                && !x.IsAbstract)
                 .ToList();
             foreach (var seeder in seeders)
             {

@@ -1,11 +1,6 @@
 ﻿using ClinicApp.Entities;
 using ClinicApp.Seeders.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClinicApp.Seeders
 {
@@ -34,15 +29,7 @@ namespace ClinicApp.Seeders
         {
             var users = new List<User>()
             {
-                new User()
-                {
-                    Name = "WorkerName",
-                    Surname = "WorkerSurname",
-                    Login = "Worker",
-                    PasswordHash = "",
-                    DaysOffPull = 26,
-                    RoleId = 1,
-                },
+              
                 new User()
                 {
                     Name = "ReceptionistName",
@@ -74,6 +61,20 @@ namespace ClinicApp.Seeders
             foreach (var user in users)
             {
                 user.PasswordHash = _passwordHasher.HashPassword(user, "");
+            }
+
+            for(int i = 0; i < 100; i++)
+            {
+                var worker = new User()
+                {
+                    Name = $"Name{i}",
+                    Surname = $"Surname{i}",
+                    Login = $"Worker{i}",
+                    DaysOffPull = 26,
+                    RoleId = 1,
+                };
+                worker.PasswordHash = _passwordHasher.HashPassword(worker,$"{i}");
+                users.Add(worker);
             }
             return users;
         }

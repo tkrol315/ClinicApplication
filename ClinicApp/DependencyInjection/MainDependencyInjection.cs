@@ -1,18 +1,16 @@
-﻿using ClinicApp.Entities;
+﻿using ClinicApp.Commands.WorkerCommands.CreateRequest;
+using ClinicApp.Dtos;
+using ClinicApp.Dtos.Validation;
+using ClinicApp.Entities;
 using ClinicApp.Repositories;
 using ClinicApp.Repositories.Interfaces;
-using ClinicApp.Seeders;
+using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.DirectoryServices.ActiveDirectory;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClinicApp.DependencyInjection
 {
@@ -32,6 +30,11 @@ namespace ClinicApp.DependencyInjection
                     services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
                     services.AddScoped<IUserRepository, UserRepository>();
                     services.AddScoped<IDayOffTypeRepository, DayOffTypeRepository>();
+                    services.AddScoped<IRequestRepository, RequestRepository>();
+                    services.AddScoped<IScheduleRepository, ScheduleRepository>();
+                    services.AddScoped(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
+                    services.AddMediatR(typeof(Program));
+                    services.AddScoped<IValidator<CreateRequestCommand>, CreateRequestCommandValidator>();
                 });
         }
     }

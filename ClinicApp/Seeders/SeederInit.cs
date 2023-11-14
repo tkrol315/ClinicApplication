@@ -20,9 +20,15 @@ namespace ClinicApp.Seeders
         }
         public async Task Init()
         {
-           await _serviceProvider.GetService<RoleSeeder>().Seed();
-           await _serviceProvider.GetService<UserSeeder>().Seed();
-           await _serviceProvider.GetService<DayOffTypeSeeder>().Seed();
+            await _serviceProvider.GetService<RoleSeeder>().Seed();
+            await _serviceProvider.GetService<UserSeeder>().Seed();
+            await _serviceProvider.GetService<DayOffTypeSeeder>().Seed();
+            await _serviceProvider.GetService<ScheduleSeeder>().Seed();
+            //var list = _serviceProvider.GetServices<ISeeder>().ToList();
+            //foreach (var item in list)
+            //{
+            //    await item.Seed();
+            //}
 
         }
     }

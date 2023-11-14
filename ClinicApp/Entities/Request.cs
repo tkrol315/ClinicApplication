@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ClinicApp.Entities
+﻿namespace ClinicApp.Entities
 {
-    public class Request
+    public class Request 
     {
         public int Id { get; set; }
         public int UserId { get; set; }

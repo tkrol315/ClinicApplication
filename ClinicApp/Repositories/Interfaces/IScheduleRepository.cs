@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Repositories.Interfaces
 {
-    public interface IDayOffTypeRepository : IRepositoryAsync<DayOffType>
+    public interface IScheduleRepository : IRepositoryAsync<Schedule>
     {
-        Task<List<string>> GetAllNames();
+        Task<IEnumerable<Schedule>>GetSchedulesByUserId(int id);
     }
 }

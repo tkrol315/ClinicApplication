@@ -26,5 +26,6 @@ namespace ClinicApp
             Application.Run(form);
 
         }
+
     }
 }

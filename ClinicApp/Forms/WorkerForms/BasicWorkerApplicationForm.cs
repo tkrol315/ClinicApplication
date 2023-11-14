@@ -1,24 +1,19 @@
-﻿using ClinicApp.Entities;
+﻿using ClinicApp.Commands.WorkerCommands.CreateRequest;
 using ClinicApp.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using MediatR;
 
 namespace ClinicApp.Forms
 {
     public partial class BasicWorkerApplicationForm : Form
     {
         private readonly IDayOffTypeRepository _dayOffTypeRepository;
+        private readonly IMediator _mediator;
 
-        public BasicWorkerApplicationForm(IDayOffTypeRepository dayOffTypeRepository)
+        public BasicWorkerApplicationForm(IDayOffTypeRepository dayOffTypeRepository,
+            IMediator mediator)
         {
             _dayOffTypeRepository = dayOffTypeRepository;
+            _mediator = mediator;
             InitializeComponent();
             LoadDayOffTypes();
         }
@@ -34,9 +29,21 @@ namespace ClinicApp.Forms
             BasicWorkerDayoffType_CB.SelectedIndex = 0;
         }
 
-        private void SendRequest_BTN_Click(object sender, EventArgs e)
+        private async void SendRequest_BTN_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                var command = new CreateRequestCommand(RequestContent_RTB.Text,
+                    BasicWorkerDayoffType_CB.Text, UserSession.CurrentUser.Id);
+                var result = await _mediator.Send(command);
+                MessageBox.Show("Wniosek został wysłany");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nie udalo sie wyslac wniosku");
+            }
+          
+        
         }
     }
 }

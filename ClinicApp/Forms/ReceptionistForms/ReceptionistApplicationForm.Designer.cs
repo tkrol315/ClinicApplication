@@ -40,15 +40,17 @@
             // 
             Request_DGV.AllowUserToAddRows = false;
             Request_DGV.AllowUserToDeleteRows = false;
-            Request_DGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Request_DGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             Request_DGV.Columns.AddRange(new DataGridViewColumn[] { RequestNumber, WorkerName, WorkerSurname, DayoffType });
             Request_DGV.Dock = DockStyle.Fill;
             Request_DGV.Location = new Point(0, 0);
             Request_DGV.Name = "Request_DGV";
             Request_DGV.ReadOnly = true;
             Request_DGV.RowTemplate.Height = 25;
+            Request_DGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             Request_DGV.Size = new Size(800, 450);
             Request_DGV.TabIndex = 0;
+            Request_DGV.CellDoubleClick += Rquest_Click;
             // 
             // RequestNumber
             // 
@@ -57,6 +59,7 @@
             RequestNumber.HeaderText = "Nr wniosku";
             RequestNumber.Name = "RequestNumber";
             RequestNumber.ReadOnly = true;
+            RequestNumber.Resizable = DataGridViewTriState.False;
             // 
             // WorkerName
             // 
@@ -65,6 +68,7 @@
             WorkerName.HeaderText = "Imię";
             WorkerName.Name = "WorkerName";
             WorkerName.ReadOnly = true;
+            WorkerName.Resizable = DataGridViewTriState.False;
             // 
             // WorkerSurname
             // 
@@ -73,6 +77,7 @@
             WorkerSurname.HeaderText = "Nazwisko";
             WorkerSurname.Name = "WorkerSurname";
             WorkerSurname.ReadOnly = true;
+            WorkerSurname.Resizable = DataGridViewTriState.False;
             // 
             // DayoffType
             // 
@@ -81,6 +86,7 @@
             DayoffType.HeaderText = "Typ zwolnienia";
             DayoffType.Name = "DayoffType";
             DayoffType.ReadOnly = true;
+            DayoffType.Resizable = DataGridViewTriState.False;
             // 
             // ReceptionistApplicationForm
             // 
