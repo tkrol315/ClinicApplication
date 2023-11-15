@@ -13,12 +13,10 @@ namespace ClinicApp.Repositories
     public class UserRepository
         : RepositoryAsync<User>, IUserRepository
     {
-        private readonly ClinicDbContext _dbContext;
 
         public UserRepository(ClinicDbContext dbContext)
             : base(dbContext)
         {
-            _dbContext = dbContext;
 
         }
 

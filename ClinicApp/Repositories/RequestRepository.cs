@@ -6,10 +6,8 @@ namespace ClinicApp.Repositories
 {
     public class RequestRepository : RepositoryAsync<Request>, IRequestRepository
     {
-        private readonly ClinicDbContext _dbContext;
         public RequestRepository(ClinicDbContext dbContext) : base(dbContext)
         {
-            _dbContext = dbContext;
         }
 
         public async Task<IEnumerable<Request>> GetAllRequestsForUserWithId(int userId)

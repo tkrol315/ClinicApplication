@@ -12,7 +12,7 @@ namespace ClinicApp.Repositories
 {
     public class RepositoryAsync<T> : IRepositoryAsync<T> where T : class
     {
-        private readonly ClinicDbContext _dbContext;
+        protected readonly ClinicDbContext _dbContext;
 
         public RepositoryAsync(ClinicDbContext dbContext)
         {

@@ -10,11 +10,10 @@ namespace ClinicApp.Repositories
 {
     public class RequestStateRepository : RepositoryAsync<RequestState>, IRequestStateRepository
     {
-        private readonly ClinicDbContext _dbContext;
 
         public RequestStateRepository(ClinicDbContext dbContext) : base(dbContext) 
         {
-            _dbContext = dbContext;
+            
         }
     }
 }

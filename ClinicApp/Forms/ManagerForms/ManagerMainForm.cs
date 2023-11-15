@@ -1,20 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using ClinicApp.Entities;
+using ClinicApp.Queries.ReceptionisQueries.GetAllRequests;
+using MediatR;
 
 namespace ClinicApp.Forms.ManagerForms
 {
     public partial class ManagerMainForm : Form
     {
-        public ManagerMainForm()
+        private readonly IMediator _mediator;
+        public List<Request> Requests { get; set; }
+        public ManagerMainForm(IMediator mediator)
         {
             InitializeComponent();
+            _mediator = mediator;
+            LoadRequest();
+        }
+
+        private async void LoadRequest()
+        {
+            var quary = new GetAllReceptionistRequestsQuery(3);
+            Requests = await _mediator.Send(quary);
         }
     }
 }

@@ -15,5 +15,7 @@ namespace ClinicApp.Entities
         public Response? Response { get; set; }
         public RequestState RequestState { get; set; }
         public int RequestStateId { get; set; }
+        public DateTime From { get; set; }
+        public DateTime To { get; set; }    
     }
 }

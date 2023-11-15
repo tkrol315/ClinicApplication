@@ -13,7 +13,6 @@ namespace ClinicApp.Entities.Configuration
        
         public void Configure(EntityTypeBuilder<Response> builder)
         {
-           builder.HasOne(r => r.DayOffType).WithMany(d => d.Responses).HasForeignKey(r => r.DayOffTypeId);
         }
     }
 }

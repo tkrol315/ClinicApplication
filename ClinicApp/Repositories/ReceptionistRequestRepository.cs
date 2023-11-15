@@ -10,10 +10,8 @@ namespace ClinicApp.Repositories
 {
     public class ReceptionistRequestRepository : RepositoryAsync<ReceptionistRequest> ,IReceptionistRequestRepository
     {
-        private readonly ClinicDbContext _dbContext;
         public ReceptionistRequestRepository(ClinicDbContext dbContext) : base(dbContext)
         { 
-            _dbContext = dbContext; 
         }
        
     }

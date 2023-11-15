@@ -2,6 +2,7 @@
 using ClinicApp.Entities;
 using ClinicApp.Queries.ReceptionisQueries.GetAllRequests;
 using ClinicApp.Queries.WorkerQueries.GetAllWorkerRequests;
+using ClinicApp.Queries.WorkerQueries.GetRejectionMessage;
 using ClinicApp.Repositories.Interfaces;
 using MediatR;
 
@@ -65,9 +66,37 @@ namespace ClinicApp.Forms
             foreach (var request in requests)
             {
                 object[] data = { request.Id, request.DayOffType.Name, request.RequestState.Message };
-                WorkerNotificatin_DGV.Rows.Add(data);
+                int rowIndex = WorkerNotificatin_DGV.Rows.Add(data);
+                switch (request.RequestState.Id)
+                {
+                    case 1:
+                        WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor = Color.Orange;
+                        break;
+                    case 2:
+                        WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor = Color.Red;
+                        break;
+                    case 3:
+                        WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+                        break;
+                    case 4:
+                        WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                        break;
+                }
             }
         }
 
+        private async void PreviewRejectionMessage_CellMouseDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            if (WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor == Color.Red)
+            {
+                var requestId = Convert.ToInt32(WorkerNotificatin_DGV.Rows[rowIndex].Cells["RequestNumber"].Value);
+                var query = new GetRejectionMessageByRequestIdQuary(requestId);
+                var message = await _mediator.Send(query);
+                MessageBox.Show("Powód odrzucenia: " + message);
+            }
+        }
+
+      
     }
 }

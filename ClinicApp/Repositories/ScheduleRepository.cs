@@ -6,10 +6,8 @@ namespace ClinicApp.Repositories
 {
     public class ScheduleRepository : RepositoryAsync<Schedule>, IScheduleRepository
     {
-        private readonly ClinicDbContext _dbContext;
         public ScheduleRepository(ClinicDbContext dbContext) : base(dbContext)
         {
-            _dbContext = dbContext;
         }
 
         public async Task<IEnumerable<Schedule>>GetSchedulesByUserId(int id)

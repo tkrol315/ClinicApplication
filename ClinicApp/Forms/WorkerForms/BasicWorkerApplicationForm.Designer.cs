@@ -146,6 +146,7 @@
             WorkerNotificatin_DGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             WorkerNotificatin_DGV.Size = new Size(748, 399);
             WorkerNotificatin_DGV.TabIndex = 0;
+            WorkerNotificatin_DGV.CellDoubleClick += PreviewRejectionMessage_CellMouseDoubleClick;
             // 
             // RequestNumber
             // 

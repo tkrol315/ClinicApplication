@@ -160,6 +160,7 @@
             Schedule_BTN.TabIndex = 10;
             Schedule_BTN.Text = "Grafik";
             Schedule_BTN.UseVisualStyleBackColor = true;
+            Schedule_BTN.Click += ShowSchedule_BTN_Click;
             // 
             // DayOff_GB
             // 

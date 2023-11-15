@@ -30,8 +30,7 @@
         {
             WorkSchedule_DGV = new DataGridView();
             Date = new DataGridViewTextBoxColumn();
-            From = new DataGridViewTextBoxColumn();
-            To = new DataGridViewTextBoxColumn();
+            Shift = new DataGridViewTextBoxColumn();
             Dayoff = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)WorkSchedule_DGV).BeginInit();
             SuspendLayout();
@@ -41,7 +40,7 @@
             WorkSchedule_DGV.AllowUserToAddRows = false;
             WorkSchedule_DGV.AllowUserToDeleteRows = false;
             WorkSchedule_DGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            WorkSchedule_DGV.Columns.AddRange(new DataGridViewColumn[] { Date, From, To, Dayoff });
+            WorkSchedule_DGV.Columns.AddRange(new DataGridViewColumn[] { Date, Shift, Dayoff });
             WorkSchedule_DGV.Dock = DockStyle.Fill;
             WorkSchedule_DGV.Location = new Point(0, 0);
             WorkSchedule_DGV.Name = "WorkSchedule_DGV";
@@ -58,19 +57,12 @@
             Date.Name = "Date";
             Date.ReadOnly = true;
             // 
-            // From
+            // Shift
             // 
-            From.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            From.HeaderText = "Od";
-            From.Name = "From";
-            From.ReadOnly = true;
-            // 
-            // To
-            // 
-            To.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            To.HeaderText = "Do";
-            To.Name = "To";
-            To.ReadOnly = true;
+            Shift.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Shift.HeaderText = "Zmiana";
+            Shift.Name = "Shift";
+            Shift.ReadOnly = true;
             // 
             // Dayoff
             // 
@@ -96,8 +88,7 @@
 
         private DataGridView WorkSchedule_DGV;
         private DataGridViewTextBoxColumn Date;
-        private DataGridViewTextBoxColumn From;
-        private DataGridViewTextBoxColumn To;
+        private DataGridViewTextBoxColumn Shift;
         private DataGridViewTextBoxColumn Dayoff;
     }
 }
