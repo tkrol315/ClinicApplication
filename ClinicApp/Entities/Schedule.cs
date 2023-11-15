@@ -13,5 +13,10 @@ namespace ClinicApp.Entities
         public DateTime Date { get; set; }
         public TimeOfDay TimeOfDay { get; set; }
         public virtual List<User> Users { get; set; }
+
+        public override string ToString()
+        {
+            return Date.Date.ToString("dd-MM-yyyy") + " " + (TimeOfDay == TimeOfDay.Morning ? "Rano" : "Popołudniu");
+        }
     }
 }

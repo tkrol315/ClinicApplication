@@ -12,9 +12,22 @@ namespace ClinicApp.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<Request>> GetAllRequestsWithUserAndDayOffType()
+        public async Task<IEnumerable<Request>> GetAllRequestsForUserWithId(int userId)
         {
-            var requests = await _dbContext.Requests.Include(r => r.DayOffType).Include(r => r.User).ToListAsync();
+           var requests = await _dbContext.Requests
+                .Include(r => r.RequestState)
+                .Where(r => r.UserId == userId)
+                .ToListAsync();
+            return requests;
+        }
+
+        public async Task<IEnumerable<Request>> GetAllRequestsWithUserAndDayOffTypeByStateId(int id)
+        {
+            var requests = await _dbContext.Requests
+                .Include(r => r.DayOffType)
+                .Include(r => r.User)
+                .Where(r => r.RequestStateId == id)
+                .ToListAsync();
             return requests;
         }
     

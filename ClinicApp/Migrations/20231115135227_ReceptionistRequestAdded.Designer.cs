@@ -4,6 +4,7 @@ using ClinicApp.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClinicApp.Migrations
 {
     [DbContext(typeof(ClinicDbContext))]
-    partial class ClinicDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231115135227_ReceptionistRequestAdded")]
+    partial class ReceptionistRequestAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,9 +103,6 @@ namespace ClinicApp.Migrations
                     b.Property<int?>("ReceptionistRequestId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RequestStateId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -114,28 +114,9 @@ namespace ClinicApp.Migrations
                         .IsUnique()
                         .HasFilter("[ReceptionistRequestId] IS NOT NULL");
 
-                    b.HasIndex("RequestStateId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Requests");
-                });
-
-            modelBuilder.Entity("ClinicApp.Entities.RequestState", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RequestStates");
                 });
 
             modelBuilder.Entity("ClinicApp.Entities.Response", b =>
@@ -159,15 +140,14 @@ namespace ClinicApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RequestId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DayOffTypeId");
 
-                    b.HasIndex("RequestId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("Responses");
                 });
@@ -304,12 +284,6 @@ namespace ClinicApp.Migrations
                         .WithOne("Request")
                         .HasForeignKey("ClinicApp.Entities.Request", "ReceptionistRequestId");
 
-                    b.HasOne("ClinicApp.Entities.RequestState", "RequestState")
-                        .WithMany("Requests")
-                        .HasForeignKey("RequestStateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ClinicApp.Entities.User", "User")
                         .WithMany("Requests")
                         .HasForeignKey("UserId")
@@ -319,8 +293,6 @@ namespace ClinicApp.Migrations
                     b.Navigation("DayOffType");
 
                     b.Navigation("ReceptionistRequest");
-
-                    b.Navigation("RequestState");
 
                     b.Navigation("User");
                 });
@@ -333,15 +305,15 @@ namespace ClinicApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ClinicApp.Entities.Request", "Request")
-                        .WithOne("Response")
-                        .HasForeignKey("ClinicApp.Entities.Response", "RequestId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                    b.HasOne("ClinicApp.Entities.User", "User")
+                        .WithMany("Responses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("DayOffType");
 
-                    b.Navigation("Request");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ClinicApp.Entities.User", b =>
@@ -400,16 +372,6 @@ namespace ClinicApp.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ClinicApp.Entities.Request", b =>
-                {
-                    b.Navigation("Response");
-                });
-
-            modelBuilder.Entity("ClinicApp.Entities.RequestState", b =>
-                {
-                    b.Navigation("Requests");
-                });
-
             modelBuilder.Entity("ClinicApp.Entities.Role", b =>
                 {
                     b.Navigation("Users");
@@ -418,6 +380,8 @@ namespace ClinicApp.Migrations
             modelBuilder.Entity("ClinicApp.Entities.User", b =>
                 {
                     b.Navigation("Requests");
+
+                    b.Navigation("Responses");
                 });
 #pragma warning restore 612, 618
         }

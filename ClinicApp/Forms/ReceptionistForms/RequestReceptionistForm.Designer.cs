@@ -39,6 +39,9 @@
             label3 = new Label();
             ReceptionistSendRequest_BTN = new Button();
             Schedule_BTN = new Button();
+            DayOff_GB = new GroupBox();
+            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            DayOff_GB.SuspendLayout();
             SuspendLayout();
             // 
             // RequestContent_RTB
@@ -74,6 +77,7 @@
             // 
             AcceptRequest_RB.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             AcceptRequest_RB.AutoSize = true;
+            AcceptRequest_RB.Checked = true;
             AcceptRequest_RB.Location = new Point(19, 418);
             AcceptRequest_RB.Name = "AcceptRequest_RB";
             AcceptRequest_RB.Size = new Size(72, 19);
@@ -81,6 +85,7 @@
             AcceptRequest_RB.TabStop = true;
             AcceptRequest_RB.Text = "Akceptuj";
             AcceptRequest_RB.UseVisualStyleBackColor = true;
+            AcceptRequest_RB.CheckedChanged += RadioButton_State_Changed;
             // 
             // RejectRequest_RB
             // 
@@ -90,16 +95,16 @@
             RejectRequest_RB.Name = "RejectRequest_RB";
             RejectRequest_RB.Size = new Size(63, 19);
             RejectRequest_RB.TabIndex = 4;
-            RejectRequest_RB.TabStop = true;
             RejectRequest_RB.Text = "Odrzuć";
             RejectRequest_RB.UseVisualStyleBackColor = true;
+            RejectRequest_RB.CheckedChanged += RadioButton_State_Changed;
             // 
             // RequestDateFrom_CB
             // 
             RequestDateFrom_CB.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             RequestDateFrom_CB.DropDownStyle = ComboBoxStyle.DropDownList;
             RequestDateFrom_CB.FormattingEnabled = true;
-            RequestDateFrom_CB.Location = new Point(671, 36);
+            RequestDateFrom_CB.Location = new Point(46, 22);
             RequestDateFrom_CB.Name = "RequestDateFrom_CB";
             RequestDateFrom_CB.Size = new Size(148, 23);
             RequestDateFrom_CB.TabIndex = 5;
@@ -110,7 +115,7 @@
             RequestDateTo_CB.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             RequestDateTo_CB.DropDownStyle = ComboBoxStyle.DropDownList;
             RequestDateTo_CB.FormattingEnabled = true;
-            RequestDateTo_CB.Location = new Point(671, 72);
+            RequestDateTo_CB.Location = new Point(46, 58);
             RequestDateTo_CB.Name = "RequestDateTo_CB";
             RequestDateTo_CB.Size = new Size(149, 23);
             RequestDateTo_CB.TabIndex = 6;
@@ -119,7 +124,7 @@
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.Location = new Point(641, 36);
+            label2.Location = new Point(16, 22);
             label2.Name = "label2";
             label2.Size = new Size(23, 15);
             label2.TabIndex = 7;
@@ -129,7 +134,7 @@
             // 
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label3.AutoSize = true;
-            label3.Location = new Point(642, 72);
+            label3.Location = new Point(17, 58);
             label3.Name = "label3";
             label3.Size = new Size(22, 15);
             label3.TabIndex = 8;
@@ -144,6 +149,7 @@
             ReceptionistSendRequest_BTN.TabIndex = 9;
             ReceptionistSendRequest_BTN.Text = "Wyślij";
             ReceptionistSendRequest_BTN.UseVisualStyleBackColor = true;
+            ReceptionistSendRequest_BTN.Click += Send_BTN_Click;
             // 
             // Schedule_BTN
             // 
@@ -155,17 +161,33 @@
             Schedule_BTN.Text = "Grafik";
             Schedule_BTN.UseVisualStyleBackColor = true;
             // 
+            // DayOff_GB
+            // 
+            DayOff_GB.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            DayOff_GB.Controls.Add(RequestDateFrom_CB);
+            DayOff_GB.Controls.Add(RequestDateTo_CB);
+            DayOff_GB.Controls.Add(label2);
+            DayOff_GB.Controls.Add(label3);
+            DayOff_GB.Location = new Point(619, 36);
+            DayOff_GB.Name = "DayOff_GB";
+            DayOff_GB.Size = new Size(200, 100);
+            DayOff_GB.TabIndex = 11;
+            DayOff_GB.TabStop = false;
+            DayOff_GB.Text = "Zakres";
+            // 
+            // sqlCommand1
+            // 
+            sqlCommand1.CommandTimeout = 30;
+            sqlCommand1.EnableOptimizedParameterBinding = false;
+            // 
             // RequestReceptionistForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(831, 486);
+            Controls.Add(DayOff_GB);
             Controls.Add(Schedule_BTN);
             Controls.Add(ReceptionistSendRequest_BTN);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(RequestDateTo_CB);
-            Controls.Add(RequestDateFrom_CB);
             Controls.Add(RejectRequest_RB);
             Controls.Add(AcceptRequest_RB);
             Controls.Add(label1);
@@ -176,6 +198,8 @@
             Name = "RequestReceptionistForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Wniosek";
+            DayOff_GB.ResumeLayout(false);
+            DayOff_GB.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -193,5 +217,7 @@
         private Label label3;
         private Button ReceptionistSendRequest_BTN;
         private Button Schedule_BTN;
+        private GroupBox DayOff_GB;
+        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
     }
 }

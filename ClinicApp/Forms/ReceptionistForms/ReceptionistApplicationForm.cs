@@ -30,8 +30,9 @@ namespace ClinicApp.Forms
 
         private async void LoadRequests()
         {
-            var getRequestsQuery = new GetAllRequestsQuery();
+            var getRequestsQuery = new GetAllReceptionistRequestsQuery(1);
             requests = await _mediator.Send(getRequestsQuery);
+            Request_DGV.Rows.Clear();
             foreach (var request in requests)
             {
                 object[] data = { request.Id, request.User.Name, request.User.Surname, request.DayOffType.Name };
@@ -47,6 +48,7 @@ namespace ClinicApp.Forms
             var requestForm = _serviceProvider.GetRequiredService<RequestReceptionistForm>();
             await requestForm.Load(clickedRequest);
             requestForm.ShowDialog();
+            LoadRequests();
         }
     }
 }

@@ -1,4 +1,7 @@
 ﻿using ClinicApp.Commands.WorkerCommands.CreateRequest;
+using ClinicApp.Entities;
+using ClinicApp.Queries.ReceptionisQueries.GetAllRequests;
+using ClinicApp.Queries.WorkerQueries.GetAllWorkerRequests;
 using ClinicApp.Repositories.Interfaces;
 using MediatR;
 
@@ -15,11 +18,16 @@ namespace ClinicApp.Forms
             _dayOffTypeRepository = dayOffTypeRepository;
             _mediator = mediator;
             InitializeComponent();
-            LoadDayOffTypes();
+            LoadAsyncData();
+
         }
 
-
-        private async void LoadDayOffTypes()
+        private async void LoadAsyncData()
+        {
+            await LoadDayOffTypes();
+            await LoadRequestToNotificationPanel();
+        }
+        public async Task LoadDayOffTypes()
         {
             var dayOffTypeNames = await _dayOffTypeRepository.GetAllNames();
             foreach (var name in dayOffTypeNames)
@@ -35,15 +43,31 @@ namespace ClinicApp.Forms
             {
                 var command = new CreateRequestCommand(RequestContent_RTB.Text,
                     BasicWorkerDayoffType_CB.Text, UserSession.CurrentUser.Id);
-                var result = await _mediator.Send(command);
+                var createdRequest = await _mediator.Send(command);
+                await LoadRequestToNotificationPanel();
                 MessageBox.Show("Wniosek został wysłany");
+
+
             }
             catch (Exception)
             {
                 MessageBox.Show("Nie udalo sie wyslac wniosku");
             }
-          
-        
+
+
         }
+
+        public async Task LoadRequestToNotificationPanel()
+        {
+            WorkerNotificatin_DGV.Rows.Clear();
+            var quary = new GetAllWorkerRequestsQuary(UserSession.CurrentUser.Id);
+            var requests = await _mediator.Send(quary);
+            foreach (var request in requests)
+            {
+                object[] data = { request.Id, request.DayOffType.Name, request.RequestState.Message };
+                WorkerNotificatin_DGV.Rows.Add(data);
+            }
+        }
+
     }
 }

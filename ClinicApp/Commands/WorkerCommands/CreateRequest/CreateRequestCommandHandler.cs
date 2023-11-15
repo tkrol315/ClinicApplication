@@ -13,22 +13,25 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Commands.WorkerCommands.CreateRequest
 {
-    public class CreateRequestCommandHandler : IRequestHandler<CreateRequestCommand, bool>
+    public class CreateRequestCommandHandler : IRequestHandler<CreateRequestCommand, Request>
     {
         private readonly IRequestRepository _requestRepository;
         private readonly IDayOffTypeRepository _dayOffTypeRepository;
+        private readonly IRequestStateRepository _requestStateRepository;
         private readonly IValidator<CreateRequestCommand> _createValidator;
 
         public CreateRequestCommandHandler(
             IRequestRepository requestRepository,
             IDayOffTypeRepository dayOffTypeRepository,
+            IRequestStateRepository requestStateRepository,
             IValidator<CreateRequestCommand> createValidator)
         {
             _requestRepository = requestRepository;
             _dayOffTypeRepository = dayOffTypeRepository;
+            _requestStateRepository = requestStateRepository;
             _createValidator = createValidator;
         }
-        public async Task<bool> Handle(
+        public async Task<Request> Handle(
             CreateRequestCommand request, CancellationToken cancellationToken)
         {
             var result = _createValidator.Validate(request);
@@ -38,16 +41,18 @@ namespace ClinicApp.Commands.WorkerCommands.CreateRequest
             }
             var dayOffTypes = await _dayOffTypeRepository.GetAll();
             var dayOffType = dayOffTypes.FirstOrDefault(t => t.Name == request.DayOffTypeName);
-            if (dayOffType is null) return false;
+            if (dayOffType is null) throw new InvalidDataException("Wrong day off typeS");
 
+            var requestState = await _requestStateRepository.Get(1);
             var newRequest = new Request()
             {
                 UserId = UserSession.CurrentUser.Id,
                 Message = request.RequestContent,
                 DayOffTypeId = dayOffType.Id,
+                RequestState = requestState
             };
             await _requestRepository.Add(newRequest);
-            return true;
+            return newRequest;
         }
     }
 }

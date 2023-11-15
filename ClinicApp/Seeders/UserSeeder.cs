@@ -71,6 +71,7 @@ namespace ClinicApp.Seeders
                     Surname = $"Surname{i}",
                     Login = $"Worker{i}",
                     DaysOffPull = 26,
+                    DaysOffOnDemandPull = 4,
                     RoleId = 1,
                 };
                 worker.PasswordHash = _passwordHasher.HashPassword(worker,$"{i}");

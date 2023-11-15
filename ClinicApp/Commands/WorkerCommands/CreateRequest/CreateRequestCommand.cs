@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Commands.WorkerCommands.CreateRequest
 {
-    public record CreateRequestCommand : IRequest<bool>
+    public record CreateRequestCommand : IRequest<Request>
     {
         public CreateRequestCommand(
             string requestContent,
             string dayOffTypeName,
-            int userId)
+            int userId
+            )
         {
             RequestContent = requestContent;
             DayOffTypeName = dayOffTypeName;

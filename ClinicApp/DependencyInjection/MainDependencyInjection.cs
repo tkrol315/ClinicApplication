@@ -1,5 +1,4 @@
 ﻿using ClinicApp.Commands.WorkerCommands.CreateRequest;
-using ClinicApp.Dtos;
 using ClinicApp.Dtos.Validation;
 using ClinicApp.Entities;
 using ClinicApp.Repositories;
@@ -32,6 +31,8 @@ namespace ClinicApp.DependencyInjection
                     services.AddScoped<IDayOffTypeRepository, DayOffTypeRepository>();
                     services.AddScoped<IRequestRepository, RequestRepository>();
                     services.AddScoped<IScheduleRepository, ScheduleRepository>();
+                    services.AddScoped<IReceptionistRequestRepository, ReceptionistRequestRepository>();
+                    services.AddScoped<IRequestStateRepository, RequestStateRepository>();
                     services.AddScoped(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
                     services.AddMediatR(typeof(Program));
                     services.AddScoped<IValidator<CreateRequestCommand>, CreateRequestCommandValidator>();

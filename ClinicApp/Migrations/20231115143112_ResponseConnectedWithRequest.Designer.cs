@@ -4,6 +4,7 @@ using ClinicApp.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClinicApp.Migrations
 {
     [DbContext(typeof(ClinicDbContext))]
-    partial class ClinicDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231115143112_ResponseConnectedWithRequest")]
+    partial class ResponseConnectedWithRequest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,7 +103,7 @@ namespace ClinicApp.Migrations
                     b.Property<int?>("ReceptionistRequestId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RequestStateId")
+                    b.Property<int>("RequestState")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
@@ -114,28 +117,9 @@ namespace ClinicApp.Migrations
                         .IsUnique()
                         .HasFilter("[ReceptionistRequestId] IS NOT NULL");
 
-                    b.HasIndex("RequestStateId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Requests");
-                });
-
-            modelBuilder.Entity("ClinicApp.Entities.RequestState", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RequestStates");
                 });
 
             modelBuilder.Entity("ClinicApp.Entities.Response", b =>
@@ -304,12 +288,6 @@ namespace ClinicApp.Migrations
                         .WithOne("Request")
                         .HasForeignKey("ClinicApp.Entities.Request", "ReceptionistRequestId");
 
-                    b.HasOne("ClinicApp.Entities.RequestState", "RequestState")
-                        .WithMany("Requests")
-                        .HasForeignKey("RequestStateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ClinicApp.Entities.User", "User")
                         .WithMany("Requests")
                         .HasForeignKey("UserId")
@@ -319,8 +297,6 @@ namespace ClinicApp.Migrations
                     b.Navigation("DayOffType");
 
                     b.Navigation("ReceptionistRequest");
-
-                    b.Navigation("RequestState");
 
                     b.Navigation("User");
                 });
@@ -403,11 +379,6 @@ namespace ClinicApp.Migrations
             modelBuilder.Entity("ClinicApp.Entities.Request", b =>
                 {
                     b.Navigation("Response");
-                });
-
-            modelBuilder.Entity("ClinicApp.Entities.RequestState", b =>
-                {
-                    b.Navigation("Requests");
                 });
 
             modelBuilder.Entity("ClinicApp.Entities.Role", b =>

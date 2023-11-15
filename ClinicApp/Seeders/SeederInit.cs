@@ -24,6 +24,7 @@ namespace ClinicApp.Seeders
             await _serviceProvider.GetService<UserSeeder>().Seed();
             await _serviceProvider.GetService<DayOffTypeSeeder>().Seed();
             await _serviceProvider.GetService<ScheduleSeeder>().Seed();
+            await _serviceProvider.GetService<RequestStateSeeder>().Seed();
             //var list = _serviceProvider.GetServices<ISeeder>().ToList();
             //foreach (var item in list)
             //{

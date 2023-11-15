@@ -14,6 +14,9 @@ namespace ClinicApp.Entities.Configuration
         {
             builder.HasOne(r => r.User).WithMany(u => u.Requests).HasForeignKey(r => r.UserId);
             builder.HasOne(r => r.DayOffType).WithMany(d => d.Requests).HasForeignKey(d => d.DayOffTypeId);
+            builder.HasOne(r => r.ReceptionistRequest).WithOne(r => r.Request).HasForeignKey<Request>(r => r.ReceptionistRequestId);
+            builder.HasOne(r => r.Response).WithOne(r => r.Request).HasForeignKey<Response>(r => r.RequestId).OnDelete(DeleteBehavior.NoAction);
+            
         }
     }
 }
