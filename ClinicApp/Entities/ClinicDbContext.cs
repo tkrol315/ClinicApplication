@@ -18,7 +18,6 @@ namespace ClinicApp.Entities
         public DbSet<Request> Requests { get; set; }
         public DbSet<DayOffType> DayOffTypes { get; set; }
         public DbSet<DayOff> DaysOff { get; set; }
-        public DbSet<ReceptionistRequest> ReceptionistRequests { get; set; }
         public DbSet<RequestState> RequestStates { get; set; }
        
 

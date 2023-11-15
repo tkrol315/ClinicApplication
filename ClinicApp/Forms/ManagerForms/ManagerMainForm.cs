@@ -17,8 +17,15 @@ namespace ClinicApp.Forms.ManagerForms
 
         private async void LoadRequest()
         {
-            var quary = new GetAllReceptionistRequestsQuery(3);
+            var quary = new GetAllRequestsByStateIdQuery(3);
             Requests = await _mediator.Send(quary);
+
+            foreach (var request in Requests)
+            {
+                object[] data = { request.From.ToString("dd-MM-yyyy"), request.To.ToString("dd-MM-yyyy") };
+                RequestManager_DGV.Rows.Add(data);
+            }
         }
+
     }
 }

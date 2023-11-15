@@ -31,7 +31,6 @@ namespace ClinicApp.DependencyInjection
                     services.AddScoped<IDayOffTypeRepository, DayOffTypeRepository>();
                     services.AddScoped<IRequestRepository, RequestRepository>();
                     services.AddScoped<IScheduleRepository, ScheduleRepository>();
-                    services.AddScoped<IReceptionistRequestRepository, ReceptionistRequestRepository>();
                     services.AddScoped<IRequestStateRepository, RequestStateRepository>();
                     services.AddScoped<IResponseRepository, ResponseRepository>();
                     services.AddScoped<IDayOffRepository, DayOffRepository>();

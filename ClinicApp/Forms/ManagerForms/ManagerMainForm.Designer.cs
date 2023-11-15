@@ -30,30 +30,30 @@
         {
             ManagerTabControl = new TabControl();
             RequestManager_TP = new TabPage();
-            ManagerHistory_TP = new TabPage();
-            ManagerSubstitutions_TP = new TabPage();
-            RequestManager_DGV = new DataGridView();
-            From = new DataGridViewTextBoxColumn();
-            To = new DataGridViewTextBoxColumn();
-            AcceptRequestManager_BTN = new Button();
-            RejectRequestManager_BTN = new Button();
             WorkerScheduleManager_BTN = new Button();
+            RejectRequestManager_BTN = new Button();
+            AcceptRequestManager_BTN = new Button();
+            RequestManager_DGV = new DataGridView();
+            ManagerHistory_TP = new TabPage();
             RequestHistory_DGV = new DataGridView();
             WorkerName = new DataGridViewTextBoxColumn();
             WorkerSurname = new DataGridViewTextBoxColumn();
             FromDateHistory = new DataGridViewTextBoxColumn();
             ToDateHistory = new DataGridViewTextBoxColumn();
+            ManagerSubstitutions_TP = new TabPage();
             Substitutions_DGV = new DataGridView();
             WorkerNameSubstitutions = new DataGridViewTextBoxColumn();
             WorkerSurnameSubstitutions = new DataGridViewTextBoxColumn();
             FromDateSubstitutions = new DataGridViewTextBoxColumn();
             ToDateSubstitutions = new DataGridViewTextBoxColumn();
+            From = new DataGridViewTextBoxColumn();
+            To = new DataGridViewTextBoxColumn();
             ManagerTabControl.SuspendLayout();
             RequestManager_TP.SuspendLayout();
-            ManagerHistory_TP.SuspendLayout();
-            ManagerSubstitutions_TP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)RequestManager_DGV).BeginInit();
+            ManagerHistory_TP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)RequestHistory_DGV).BeginInit();
+            ManagerSubstitutions_TP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Substitutions_DGV).BeginInit();
             SuspendLayout();
             // 
@@ -83,27 +83,35 @@
             RequestManager_TP.Text = "Wnisoki";
             RequestManager_TP.UseVisualStyleBackColor = true;
             // 
-            // ManagerHistory_TP
+            // WorkerScheduleManager_BTN
             // 
-            ManagerHistory_TP.Controls.Add(RequestHistory_DGV);
-            ManagerHistory_TP.Location = new Point(4, 24);
-            ManagerHistory_TP.Name = "ManagerHistory_TP";
-            ManagerHistory_TP.Padding = new Padding(3);
-            ManagerHistory_TP.Size = new Size(792, 422);
-            ManagerHistory_TP.TabIndex = 1;
-            ManagerHistory_TP.Text = "Historia";
-            ManagerHistory_TP.UseVisualStyleBackColor = true;
+            WorkerScheduleManager_BTN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            WorkerScheduleManager_BTN.Location = new Point(693, 375);
+            WorkerScheduleManager_BTN.Name = "WorkerScheduleManager_BTN";
+            WorkerScheduleManager_BTN.Size = new Size(91, 39);
+            WorkerScheduleManager_BTN.TabIndex = 3;
+            WorkerScheduleManager_BTN.Text = "Grafik";
+            WorkerScheduleManager_BTN.UseVisualStyleBackColor = true;
             // 
-            // ManagerSubstitutions_TP
+            // RejectRequestManager_BTN
             // 
-            ManagerSubstitutions_TP.Controls.Add(Substitutions_DGV);
-            ManagerSubstitutions_TP.Location = new Point(4, 24);
-            ManagerSubstitutions_TP.Name = "ManagerSubstitutions_TP";
-            ManagerSubstitutions_TP.Padding = new Padding(3);
-            ManagerSubstitutions_TP.Size = new Size(792, 422);
-            ManagerSubstitutions_TP.TabIndex = 2;
-            ManagerSubstitutions_TP.Text = "Zastepstwa";
-            ManagerSubstitutions_TP.UseVisualStyleBackColor = true;
+            RejectRequestManager_BTN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            RejectRequestManager_BTN.Location = new Point(596, 375);
+            RejectRequestManager_BTN.Name = "RejectRequestManager_BTN";
+            RejectRequestManager_BTN.Size = new Size(91, 39);
+            RejectRequestManager_BTN.TabIndex = 2;
+            RejectRequestManager_BTN.Text = "Odrzuć";
+            RejectRequestManager_BTN.UseVisualStyleBackColor = true;
+            // 
+            // AcceptRequestManager_BTN
+            // 
+            AcceptRequestManager_BTN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            AcceptRequestManager_BTN.Location = new Point(499, 375);
+            AcceptRequestManager_BTN.Name = "AcceptRequestManager_BTN";
+            AcceptRequestManager_BTN.Size = new Size(91, 39);
+            AcceptRequestManager_BTN.TabIndex = 1;
+            AcceptRequestManager_BTN.Text = "Zatwierdź";
+            AcceptRequestManager_BTN.UseVisualStyleBackColor = true;
             // 
             // RequestManager_DGV
             // 
@@ -116,50 +124,20 @@
             RequestManager_DGV.Name = "RequestManager_DGV";
             RequestManager_DGV.ReadOnly = true;
             RequestManager_DGV.RowTemplate.Height = 25;
+            RequestManager_DGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             RequestManager_DGV.Size = new Size(774, 354);
             RequestManager_DGV.TabIndex = 0;
             // 
-            // From
+            // ManagerHistory_TP
             // 
-            From.HeaderText = "Od";
-            From.Name = "From";
-            From.ReadOnly = true;
-            // 
-            // To
-            // 
-            To.HeaderText = "Do";
-            To.Name = "To";
-            To.ReadOnly = true;
-            // 
-            // AcceptRequestManager_BTN
-            // 
-            AcceptRequestManager_BTN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            AcceptRequestManager_BTN.Location = new Point(499, 375);
-            AcceptRequestManager_BTN.Name = "AcceptRequestManager_BTN";
-            AcceptRequestManager_BTN.Size = new Size(91, 39);
-            AcceptRequestManager_BTN.TabIndex = 1;
-            AcceptRequestManager_BTN.Text = "Zatwierdź";
-            AcceptRequestManager_BTN.UseVisualStyleBackColor = true;
-            // 
-            // RejectRequestManager_BTN
-            // 
-            RejectRequestManager_BTN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            RejectRequestManager_BTN.Location = new Point(596, 375);
-            RejectRequestManager_BTN.Name = "RejectRequestManager_BTN";
-            RejectRequestManager_BTN.Size = new Size(91, 39);
-            RejectRequestManager_BTN.TabIndex = 2;
-            RejectRequestManager_BTN.Text = "Odrzuć";
-            RejectRequestManager_BTN.UseVisualStyleBackColor = true;
-            // 
-            // WorkerScheduleManager_BTN
-            // 
-            WorkerScheduleManager_BTN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            WorkerScheduleManager_BTN.Location = new Point(693, 375);
-            WorkerScheduleManager_BTN.Name = "WorkerScheduleManager_BTN";
-            WorkerScheduleManager_BTN.Size = new Size(91, 39);
-            WorkerScheduleManager_BTN.TabIndex = 3;
-            WorkerScheduleManager_BTN.Text = "Grafik";
-            WorkerScheduleManager_BTN.UseVisualStyleBackColor = true;
+            ManagerHistory_TP.Controls.Add(RequestHistory_DGV);
+            ManagerHistory_TP.Location = new Point(4, 24);
+            ManagerHistory_TP.Name = "ManagerHistory_TP";
+            ManagerHistory_TP.Padding = new Padding(3);
+            ManagerHistory_TP.Size = new Size(792, 422);
+            ManagerHistory_TP.TabIndex = 1;
+            ManagerHistory_TP.Text = "Historia";
+            ManagerHistory_TP.UseVisualStyleBackColor = true;
             // 
             // RequestHistory_DGV
             // 
@@ -207,6 +185,17 @@
             ToDateHistory.Name = "ToDateHistory";
             ToDateHistory.ReadOnly = true;
             // 
+            // ManagerSubstitutions_TP
+            // 
+            ManagerSubstitutions_TP.Controls.Add(Substitutions_DGV);
+            ManagerSubstitutions_TP.Location = new Point(4, 24);
+            ManagerSubstitutions_TP.Name = "ManagerSubstitutions_TP";
+            ManagerSubstitutions_TP.Padding = new Padding(3);
+            ManagerSubstitutions_TP.Size = new Size(792, 422);
+            ManagerSubstitutions_TP.TabIndex = 2;
+            ManagerSubstitutions_TP.Text = "Zastepstwa";
+            ManagerSubstitutions_TP.UseVisualStyleBackColor = true;
+            // 
             // Substitutions_DGV
             // 
             Substitutions_DGV.AllowUserToAddRows = false;
@@ -253,6 +242,20 @@
             ToDateSubstitutions.Name = "ToDateSubstitutions";
             ToDateSubstitutions.ReadOnly = true;
             // 
+            // From
+            // 
+            From.HeaderText = "Od";
+            From.Name = "From";
+            From.ReadOnly = true;
+            From.Resizable = DataGridViewTriState.False;
+            // 
+            // To
+            // 
+            To.HeaderText = "Do";
+            To.Name = "To";
+            To.ReadOnly = true;
+            To.Resizable = DataGridViewTriState.False;
+            // 
             // ManagerMainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -264,10 +267,10 @@
             Text = "Panel kierownika";
             ManagerTabControl.ResumeLayout(false);
             RequestManager_TP.ResumeLayout(false);
-            ManagerHistory_TP.ResumeLayout(false);
-            ManagerSubstitutions_TP.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)RequestManager_DGV).EndInit();
+            ManagerHistory_TP.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)RequestHistory_DGV).EndInit();
+            ManagerSubstitutions_TP.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)Substitutions_DGV).EndInit();
             ResumeLayout(false);
         }
@@ -281,8 +284,6 @@
         private Button RejectRequestManager_BTN;
         private Button AcceptRequestManager_BTN;
         private DataGridView RequestManager_DGV;
-        private DataGridViewTextBoxColumn From;
-        private DataGridViewTextBoxColumn To;
         private Button WorkerScheduleManager_BTN;
         private DataGridView RequestHistory_DGV;
         private DataGridViewTextBoxColumn WorkerName;
@@ -294,5 +295,7 @@
         private DataGridViewTextBoxColumn WorkerSurnameSubstitutions;
         private DataGridViewTextBoxColumn FromDateSubstitutions;
         private DataGridViewTextBoxColumn ToDateSubstitutions;
+        private DataGridViewTextBoxColumn From;
+        private DataGridViewTextBoxColumn To;
     }
 }

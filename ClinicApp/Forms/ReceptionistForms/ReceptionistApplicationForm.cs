@@ -30,7 +30,7 @@ namespace ClinicApp.Forms
 
         private async void LoadRequests()
         {
-            var getRequestsQuery = new GetAllReceptionistRequestsQuery(1);
+            var getRequestsQuery = new GetAllRequestsByStateIdQuery(1);
             requests = await _mediator.Send(getRequestsQuery);
             Request_DGV.Rows.Clear();
             foreach (var request in requests)

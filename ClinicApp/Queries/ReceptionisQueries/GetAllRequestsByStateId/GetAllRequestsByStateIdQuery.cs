@@ -4,9 +4,9 @@ using MediatR;
 
 namespace ClinicApp.Queries.ReceptionisQueries.GetAllRequests
 {
-    public record GetAllReceptionistRequestsQuery : IRequest<List<Request>>
+    public record GetAllRequestsByStateIdQuery : IRequest<List<Request>>
     {
-        public GetAllReceptionistRequestsQuery(int stateId)
+        public GetAllRequestsByStateIdQuery(int stateId)
         {
             StateId = stateId;
         }
