@@ -40,7 +40,7 @@ namespace ClinicApp.Migrations
 
                     b.HasIndex("DayOffTypeId");
 
-                    b.ToTable("DaysOff");
+                    b.ToTable("DaysOff", (string)null);
                 });
 
             modelBuilder.Entity("ClinicApp.Entities.DayOffType", b =>
@@ -57,7 +57,7 @@ namespace ClinicApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DayOffTypes");
+                    b.ToTable("DayOffTypes", (string)null);
                 });
 
             modelBuilder.Entity("ClinicApp.Entities.Request", b =>
@@ -95,7 +95,7 @@ namespace ClinicApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Requests");
+                    b.ToTable("Requests", (string)null);
                 });
 
             modelBuilder.Entity("ClinicApp.Entities.RequestState", b =>
@@ -112,7 +112,7 @@ namespace ClinicApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RequestStates");
+                    b.ToTable("RequestStates", (string)null);
                 });
 
             modelBuilder.Entity("ClinicApp.Entities.Response", b =>
@@ -146,7 +146,7 @@ namespace ClinicApp.Migrations
                     b.HasIndex("RequestId")
                         .IsUnique();
 
-                    b.ToTable("Responses");
+                    b.ToTable("Responses", (string)null);
                 });
 
             modelBuilder.Entity("ClinicApp.Entities.Role", b =>
@@ -166,7 +166,7 @@ namespace ClinicApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("ClinicApp.Entities.Schedule", b =>
@@ -180,15 +180,12 @@ namespace ClinicApp.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDayOff")
-                        .HasColumnType("bit");
-
                     b.Property<int>("TimeOfDay")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Schedules");
+                    b.ToTable("Schedules", (string)null);
                 });
 
             modelBuilder.Entity("ClinicApp.Entities.User", b =>
@@ -228,7 +225,7 @@ namespace ClinicApp.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("DayOffUser", b =>
@@ -243,7 +240,7 @@ namespace ClinicApp.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("DayOffUser");
+                    b.ToTable("DayOffUser", (string)null);
                 });
 
             modelBuilder.Entity("ScheduleUser", b =>
@@ -258,7 +255,7 @@ namespace ClinicApp.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("ScheduleUser");
+                    b.ToTable("ScheduleUser", (string)null);
                 });
 
             modelBuilder.Entity("ClinicApp.Entities.DayOff", b =>

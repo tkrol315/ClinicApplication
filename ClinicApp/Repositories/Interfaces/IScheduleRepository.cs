@@ -10,5 +10,6 @@ namespace ClinicApp.Repositories.Interfaces
     public interface IScheduleRepository : IRepositoryAsync<Schedule>
     {
         Task<IEnumerable<Schedule>>GetSchedulesByUserId(int id);
+       
     }
 }

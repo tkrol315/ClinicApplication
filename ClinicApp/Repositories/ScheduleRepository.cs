@@ -19,5 +19,7 @@ namespace ClinicApp.Repositories
             .ToListAsync();
             return schedules;
         }
+
+        
     }
 }

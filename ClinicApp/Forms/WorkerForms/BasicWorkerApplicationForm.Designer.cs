@@ -63,7 +63,7 @@
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(762, 433);
+            tableLayoutPanel1.Size = new Size(836, 449);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // BasicWorkerTabControl
@@ -74,7 +74,7 @@
             BasicWorkerTabControl.Location = new Point(3, 28);
             BasicWorkerTabControl.Name = "BasicWorkerTabControl";
             BasicWorkerTabControl.SelectedIndex = 0;
-            BasicWorkerTabControl.Size = new Size(756, 402);
+            BasicWorkerTabControl.Size = new Size(830, 418);
             BasicWorkerTabControl.TabIndex = 1;
             // 
             // BasicWorkerSendRequest_TP
@@ -87,7 +87,7 @@
             BasicWorkerSendRequest_TP.Location = new Point(4, 24);
             BasicWorkerSendRequest_TP.Name = "BasicWorkerSendRequest_TP";
             BasicWorkerSendRequest_TP.Padding = new Padding(3);
-            BasicWorkerSendRequest_TP.Size = new Size(748, 374);
+            BasicWorkerSendRequest_TP.Size = new Size(822, 390);
             BasicWorkerSendRequest_TP.TabIndex = 0;
             BasicWorkerSendRequest_TP.Text = "Wyślij wniosek";
             BasicWorkerSendRequest_TP.UseVisualStyleBackColor = true;
@@ -95,18 +95,19 @@
             // SendRequest_BTN
             // 
             SendRequest_BTN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            SendRequest_BTN.Location = new Point(1153, 621);
+            SendRequest_BTN.Location = new Point(707, 349);
             SendRequest_BTN.Name = "SendRequest_BTN";
             SendRequest_BTN.Size = new Size(109, 35);
             SendRequest_BTN.TabIndex = 4;
             SendRequest_BTN.Text = "Wyslij";
             SendRequest_BTN.UseVisualStyleBackColor = true;
+            SendRequest_BTN.Click += SendRequest_BTN_Click;
             // 
             // label2
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.Location = new Point(1141, 18);
+            label2.Location = new Point(595, 33);
             label2.Name = "label2";
             label2.Size = new Size(84, 15);
             label2.TabIndex = 3;
@@ -117,7 +118,7 @@
             BasicWorkerDayoffType_CB.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             BasicWorkerDayoffType_CB.DropDownStyle = ComboBoxStyle.DropDownList;
             BasicWorkerDayoffType_CB.FormattingEnabled = true;
-            BasicWorkerDayoffType_CB.Location = new Point(1141, 39);
+            BasicWorkerDayoffType_CB.Location = new Point(685, 33);
             BasicWorkerDayoffType_CB.Name = "BasicWorkerDayoffType_CB";
             BasicWorkerDayoffType_CB.Size = new Size(121, 23);
             BasicWorkerDayoffType_CB.TabIndex = 2;
@@ -146,7 +147,7 @@
             BasicWorkerNotifications_TP.Location = new Point(4, 24);
             BasicWorkerNotifications_TP.Name = "BasicWorkerNotifications_TP";
             BasicWorkerNotifications_TP.Padding = new Padding(3);
-            BasicWorkerNotifications_TP.Size = new Size(754, 405);
+            BasicWorkerNotifications_TP.Size = new Size(822, 390);
             BasicWorkerNotifications_TP.TabIndex = 1;
             BasicWorkerNotifications_TP.Text = "Powiadomienia";
             BasicWorkerNotifications_TP.UseVisualStyleBackColor = true;
@@ -163,7 +164,7 @@
             WorkerNotificatin_DGV.ReadOnly = true;
             WorkerNotificatin_DGV.RowTemplate.Height = 25;
             WorkerNotificatin_DGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            WorkerNotificatin_DGV.Size = new Size(748, 399);
+            WorkerNotificatin_DGV.Size = new Size(816, 384);
             WorkerNotificatin_DGV.TabIndex = 0;
             // 
             // RequestNumber
@@ -195,7 +196,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { LogoutWorker_BTN });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(762, 24);
+            menuStrip1.Size = new Size(836, 24);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -210,7 +211,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(762, 433);
+            ClientSize = new Size(836, 449);
             Controls.Add(tableLayoutPanel1);
             MainMenuStrip = menuStrip1;
             MaximumSize = new Size(991, 624);

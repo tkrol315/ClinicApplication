@@ -41,7 +41,6 @@ namespace ClinicApp.Commands.ManagerCommands
                         Date = schedule.Date,
                     };
                     daysOff.Add(dayOff);
-                    schedule.IsDayOff = true;
                     dayOffCounter++;
                 }
             }

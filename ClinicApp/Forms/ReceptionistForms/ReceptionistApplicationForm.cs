@@ -43,7 +43,7 @@ namespace ClinicApp.Forms
             int id = Convert.ToInt32(selectedRow.Cells["RequestNumber"].Value);
             var clickedRequest = requests.Single(r => r.Id == id);
             var requestForm = _serviceProvider.GetRequiredService<RequestReceptionistForm>();
-            await requestForm.Load(clickedRequest);
+            await requestForm.LoadForm(clickedRequest);
             requestForm.ShowDialog();
             LoadRequests();
         }

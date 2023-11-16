@@ -7,6 +7,7 @@ namespace ClinicApp.Commands.ReceptionistCommands.SendAcceptedReceptionistReques
     public class SendAcceptedReceptionistRequestCommandHandler : IRequestHandler<SendAcceptedReceptionistRequestCommand, bool>
     {
         private readonly IRequestRepository _requestRepository;
+
         public SendAcceptedReceptionistRequestCommandHandler(
             IRequestRepository requestRepository)
         {

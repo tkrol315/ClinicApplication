@@ -22,16 +22,16 @@ namespace ClinicApp.Forms.ReceptionistForms
 
 
         }
-        public async Task Load(Request request)
+        public async Task LoadForm(Request request)
         {
             this.request = request;
             RequestContent_RTB.Text = request.Message;
-            var query = new GetUserSchedulesQuary(request.UserId);
+            var query = new GetUserAvailableSchedulesQuary(request.UserId);
             schedules = await _mediator.Send(query);
-            AdjustDayOffComboBox();
+            FillFromDateComboBox();
         }
 
-        private void AdjustDayOffComboBox()
+        private void FillFromDateComboBox()
         {
             foreach (var schedule in schedules)
             {
@@ -40,40 +40,26 @@ namespace ClinicApp.Forms.ReceptionistForms
 
         }
 
-
         private void DateFrom_SelectedIndexChanged(object sender, EventArgs e)
         {
             RequestDateTo_CB.Items.Clear();
             var selectedScheduleDate = GetDateFromComboBox(RequestDateFrom_CB);
-            if (request.DayOffTypeId == 1)
-            {
-                foreach (var schedule in schedules)
-                {
-                    if (schedule.Date >= selectedScheduleDate && RequestDateTo_CB.Items.Count < request.User.DaysOffPull)
-                    {
-                        RequestDateTo_CB.Items.Add(schedule.ToString());
-                    }
-                }
-            }
-            else if (request.DayOffTypeId == 2)
-            {
-                foreach (var schedule in schedules)
-                {
-                    if (schedule.Date >= selectedScheduleDate)
-                    {
-                        RequestDateTo_CB.Items.Add(schedule.ToString());
-                    }
 
-                }
-            }
-            else if (request.DayOffTypeId == 3)
+            schedules.RemoveAll(s => s.Date < selectedScheduleDate.Date);
+            
+            foreach (var s in schedules)
             {
-                foreach (var schedule in schedules)
+                if (request.DayOffTypeId == 1 && RequestDateTo_CB.Items.Count < request.User.DaysOffPull)
                 {
-                    if (schedule.Date >= selectedScheduleDate && RequestDateTo_CB.Items.Count < request.User.DaysOffOnDemandPull)
-                    {
-                        RequestDateTo_CB.Items.Add(schedule.ToString());
-                    }
+                    RequestDateTo_CB.Items.Add(s.ToString());
+                }
+                else if(request.DayOffTypeId == 2)
+                {
+                    RequestDateTo_CB.Items.Add(s.ToString());
+                }
+                else if(request.DayOffTypeId == 3 && RequestDateTo_CB.Items.Count < request.User.DaysOffOnDemandPull)
+                {
+                    RequestDateTo_CB.Items.Add(s.ToString());
                 }
             }
         }
@@ -95,8 +81,8 @@ namespace ClinicApp.Forms.ReceptionistForms
                 RequestDateFrom_CB.SelectedItem is not null &&
                 RequestDateTo_CB.SelectedItem is not null)
             {
-
-                var command = new SendAcceptedReceptionistRequestCommand(request,
+                var command = new SendAcceptedReceptionistRequestCommand(
+                    request,
                     GetDateFromComboBox(RequestDateFrom_CB),
                     GetDateFromComboBox(RequestDateTo_CB));
                 await _mediator.Send(command);
@@ -128,7 +114,7 @@ namespace ClinicApp.Forms.ReceptionistForms
         {
             var scheduleForm = _serviceProvider.GetRequiredService<WorkScheduleForm>();
             scheduleForm.Text = $"Grafik - {request.User.Name} {request.User.Surname}";
-            var quarySchadules = new GetUserSchedulesQuary(request.UserId);
+            var quarySchadules = new GetUserAvailableSchedulesQuary(request.UserId);
             var quaryDaysOff = new GetUserDaysOffQuary(request.UserId);
             scheduleForm.UserSchedules = await _mediator.Send(quarySchadules);
             scheduleForm.DaysOff = await _mediator.Send(quaryDaysOff);
