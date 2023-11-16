@@ -20,7 +20,7 @@ namespace ClinicApp.Queries.WorkerQueries.GetAllWorkerRequests
 
         public async Task<List<Request>> Handle(GetAllWorkerRequestsQuary request, CancellationToken cancellationToken)
         {
-            var requests =  await _requestRepository.GetAllRequestsForUserWithId(request.UserId);
+            var requests =  await _requestRepository.GetAllRequestsForUserByUserId(request.UserId);
             return requests.ToList();
         }
     }

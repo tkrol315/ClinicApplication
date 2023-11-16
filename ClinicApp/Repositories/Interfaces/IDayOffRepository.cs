@@ -10,5 +10,6 @@ namespace ClinicApp.Repositories.Interfaces
     public interface IDayOffRepository : IRepositoryAsync<DayOff>
     {
         Task<IEnumerable<DayOff>> GetAllDaysOffByUserId(int userId);
+        Task AddRange(IEnumerable<DayOff> dayOffs);
     }
 }

@@ -28,6 +28,12 @@ namespace ClinicApp.Repositories
             return user;
         }
 
-
+        public async Task<User> GetUserWithSchedulesByUserId(int id)
+        {
+           var user = await _dbContext.Users
+                .Include(u => u.Schedules)
+                .FirstOrDefaultAsync(u => u.Id == id);
+            return user;
+        }
     }
 }

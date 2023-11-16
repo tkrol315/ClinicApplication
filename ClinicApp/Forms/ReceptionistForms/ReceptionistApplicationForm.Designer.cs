@@ -33,7 +33,10 @@
             WorkerName = new DataGridViewTextBoxColumn();
             WorkerSurname = new DataGridViewTextBoxColumn();
             DayoffType = new DataGridViewTextBoxColumn();
+            menuStrip1 = new MenuStrip();
+            Logout_BTN = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)Request_DGV).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // Request_DGV
@@ -43,12 +46,12 @@
             Request_DGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             Request_DGV.Columns.AddRange(new DataGridViewColumn[] { RequestNumber, WorkerName, WorkerSurname, DayoffType });
             Request_DGV.Dock = DockStyle.Fill;
-            Request_DGV.Location = new Point(0, 0);
+            Request_DGV.Location = new Point(0, 24);
             Request_DGV.Name = "Request_DGV";
             Request_DGV.ReadOnly = true;
             Request_DGV.RowTemplate.Height = 25;
             Request_DGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Request_DGV.Size = new Size(800, 450);
+            Request_DGV.Size = new Size(800, 426);
             Request_DGV.TabIndex = 0;
             Request_DGV.CellDoubleClick += Rquest_Click;
             // 
@@ -88,17 +91,38 @@
             DayoffType.ReadOnly = true;
             DayoffType.Resizable = DataGridViewTriState.False;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { Logout_BTN });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.TabIndex = 1;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // Logout_BTN
+            // 
+            Logout_BTN.Name = "Logout_BTN";
+            Logout_BTN.Size = new Size(63, 20);
+            Logout_BTN.Text = "Wyloguj";
+            Logout_BTN.Click += LogoutToolStripMenuItem_Click;
+            // 
             // ReceptionistApplicationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(Request_DGV);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "ReceptionistApplicationForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Panel recepcjonistki";
             ((System.ComponentModel.ISupportInitialize)Request_DGV).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -108,5 +132,7 @@
         private DataGridViewTextBoxColumn WorkerName;
         private DataGridViewTextBoxColumn WorkerSurname;
         private DataGridViewTextBoxColumn DayoffType;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem Logout_BTN;
     }
 }

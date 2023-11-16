@@ -1,8 +1,7 @@
-﻿
-using ClinicApp.Entities;
+﻿using ClinicApp.Entities;
 using MediatR;
 
-namespace ClinicApp.Queries.ReceptionisQueries.GetAllRequests
+namespace ClinicApp.Queries.GetAllRequestsByStateId
 {
     public record GetAllRequestsByStateIdQuery : IRequest<List<Request>>
     {
@@ -12,5 +11,5 @@ namespace ClinicApp.Queries.ReceptionisQueries.GetAllRequests
         }
         public int StateId { get; init; }
 
-    } 
+    }
 }

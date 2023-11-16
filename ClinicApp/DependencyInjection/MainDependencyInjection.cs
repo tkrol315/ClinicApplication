@@ -3,6 +3,7 @@ using ClinicApp.Dtos.Validation;
 using ClinicApp.Entities;
 using ClinicApp.Repositories;
 using ClinicApp.Repositories.Interfaces;
+using ClinicApp.Services.LogoutService;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -37,6 +38,7 @@ namespace ClinicApp.DependencyInjection
                     services.AddScoped(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
                     services.AddMediatR(typeof(Program));
                     services.AddScoped<IValidator<CreateRequestCommand>, CreateRequestCommandValidator>();
+                    services.AddScoped<ILogoutService, LogoutService>();
                 });
         }
     }

@@ -1,16 +1,9 @@
 ﻿using ClinicApp.Entities;
 using ClinicApp.Forms.ReceptionistForms;
-using ClinicApp.Queries.ReceptionisQueries.GetAllRequests;
+using ClinicApp.Queries.GetAllRequestsByStateId;
+using ClinicApp.Services.LogoutService;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ClinicApp.Forms
@@ -19,11 +12,15 @@ namespace ClinicApp.Forms
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IMediator _mediator;
+        private readonly ILogoutService _logoutService;
         private List<Request> requests;
-        public ReceptionistApplicationForm(IMediator mediator, IServiceProvider serviceProvider)
+        public ReceptionistApplicationForm(IMediator mediator,
+            IServiceProvider serviceProvider,
+            ILogoutService logoutService)
         {
             _mediator = mediator;
             _serviceProvider = serviceProvider;
+            _logoutService = logoutService;
             InitializeComponent();
             LoadRequests();
         }
@@ -49,6 +46,11 @@ namespace ClinicApp.Forms
             await requestForm.Load(clickedRequest);
             requestForm.ShowDialog();
             LoadRequests();
+        }
+
+        private void LogoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _logoutService.LogoutOut(sender, e, this);
         }
     }
 }

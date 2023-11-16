@@ -1,9 +1,8 @@
 ﻿using ClinicApp.Commands.WorkerCommands.CreateRequest;
-using ClinicApp.Entities;
-using ClinicApp.Queries.ReceptionisQueries.GetAllRequests;
 using ClinicApp.Queries.WorkerQueries.GetAllWorkerRequests;
 using ClinicApp.Queries.WorkerQueries.GetRejectionMessage;
 using ClinicApp.Repositories.Interfaces;
+using ClinicApp.Services.LogoutService;
 using MediatR;
 
 namespace ClinicApp.Forms
@@ -12,15 +11,18 @@ namespace ClinicApp.Forms
     {
         private readonly IDayOffTypeRepository _dayOffTypeRepository;
         private readonly IMediator _mediator;
-
-        public BasicWorkerApplicationForm(IDayOffTypeRepository dayOffTypeRepository,
-            IMediator mediator)
+        private readonly ILogoutService _logoutService;
+        private readonly Color _rejectedNotificationColor = Color.OrangeRed;
+        public BasicWorkerApplicationForm(
+            IDayOffTypeRepository dayOffTypeRepository,
+            IMediator mediator,
+            ILogoutService logoutService)
         {
             _dayOffTypeRepository = dayOffTypeRepository;
             _mediator = mediator;
             InitializeComponent();
             LoadAsyncData();
-
+            _logoutService = logoutService;
         }
 
         private async void LoadAsyncData()
@@ -47,7 +49,7 @@ namespace ClinicApp.Forms
                 var createdRequest = await _mediator.Send(command);
                 await LoadRequestToNotificationPanel();
                 MessageBox.Show("Wniosek został wysłany");
-
+                RequestContent_RTB.Text = "";
 
             }
             catch (Exception)
@@ -70,16 +72,16 @@ namespace ClinicApp.Forms
                 switch (request.RequestState.Id)
                 {
                     case 1:
-                        WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor = Color.Orange;
+                        WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor = Color.PeachPuff;
                         break;
                     case 2:
-                        WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor = Color.Red;
+                        WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor = _rejectedNotificationColor;
                         break;
                     case 3:
-                        WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+                        WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor = Color.PaleGoldenrod;
                         break;
                     case 4:
-                        WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                        WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor = Color.SpringGreen;
                         break;
                 }
             }
@@ -88,7 +90,7 @@ namespace ClinicApp.Forms
         private async void PreviewRejectionMessage_CellMouseDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
-            if (WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor == Color.Red)
+            if (WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor == _rejectedNotificationColor)
             {
                 var requestId = Convert.ToInt32(WorkerNotificatin_DGV.Rows[rowIndex].Cells["RequestNumber"].Value);
                 var query = new GetRejectionMessageByRequestIdQuary(requestId);
@@ -97,6 +99,9 @@ namespace ClinicApp.Forms
             }
         }
 
-      
+        private void LogoutWorker_BTN_Click(object sender, EventArgs e)
+        {
+            _logoutService.LogoutOut(sender, e, this);
+        }
     }
 }

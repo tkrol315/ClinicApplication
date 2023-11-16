@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            tableLayoutPanel1 = new TableLayoutPanel();
             BasicWorkerTabControl = new TabControl();
             BasicWorkerSendRequest_TP = new TabPage();
             SendRequest_BTN = new Button();
@@ -40,22 +41,41 @@
             RequestNumber = new DataGridViewTextBoxColumn();
             DayoffType = new DataGridViewTextBoxColumn();
             RequestStatus = new DataGridViewTextBoxColumn();
+            menuStrip1 = new MenuStrip();
+            LogoutWorker_BTN = new ToolStripMenuItem();
+            tableLayoutPanel1.SuspendLayout();
             BasicWorkerTabControl.SuspendLayout();
             BasicWorkerSendRequest_TP.SuspendLayout();
             BasicWorkerNotifications_TP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)WorkerNotificatin_DGV).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(BasicWorkerTabControl, 0, 1);
+            tableLayoutPanel1.Controls.Add(menuStrip1, 0, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(762, 433);
+            tableLayoutPanel1.TabIndex = 0;
             // 
             // BasicWorkerTabControl
             // 
             BasicWorkerTabControl.Controls.Add(BasicWorkerSendRequest_TP);
             BasicWorkerTabControl.Controls.Add(BasicWorkerNotifications_TP);
             BasicWorkerTabControl.Dock = DockStyle.Fill;
-            BasicWorkerTabControl.Location = new Point(0, 0);
+            BasicWorkerTabControl.Location = new Point(3, 28);
             BasicWorkerTabControl.Name = "BasicWorkerTabControl";
             BasicWorkerTabControl.SelectedIndex = 0;
-            BasicWorkerTabControl.Size = new Size(762, 433);
-            BasicWorkerTabControl.TabIndex = 0;
+            BasicWorkerTabControl.Size = new Size(756, 402);
+            BasicWorkerTabControl.TabIndex = 1;
             // 
             // BasicWorkerSendRequest_TP
             // 
@@ -67,7 +87,7 @@
             BasicWorkerSendRequest_TP.Location = new Point(4, 24);
             BasicWorkerSendRequest_TP.Name = "BasicWorkerSendRequest_TP";
             BasicWorkerSendRequest_TP.Padding = new Padding(3);
-            BasicWorkerSendRequest_TP.Size = new Size(754, 405);
+            BasicWorkerSendRequest_TP.Size = new Size(748, 374);
             BasicWorkerSendRequest_TP.TabIndex = 0;
             BasicWorkerSendRequest_TP.Text = "Wyślij wniosek";
             BasicWorkerSendRequest_TP.UseVisualStyleBackColor = true;
@@ -75,19 +95,18 @@
             // SendRequest_BTN
             // 
             SendRequest_BTN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            SendRequest_BTN.Location = new Point(608, 350);
+            SendRequest_BTN.Location = new Point(1153, 621);
             SendRequest_BTN.Name = "SendRequest_BTN";
             SendRequest_BTN.Size = new Size(109, 35);
             SendRequest_BTN.TabIndex = 4;
             SendRequest_BTN.Text = "Wyslij";
             SendRequest_BTN.UseVisualStyleBackColor = true;
-            SendRequest_BTN.Click += SendRequest_BTN_Click;
             // 
             // label2
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.Location = new Point(596, 15);
+            label2.Location = new Point(1141, 18);
             label2.Name = "label2";
             label2.Size = new Size(84, 15);
             label2.TabIndex = 3;
@@ -98,7 +117,7 @@
             BasicWorkerDayoffType_CB.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             BasicWorkerDayoffType_CB.DropDownStyle = ComboBoxStyle.DropDownList;
             BasicWorkerDayoffType_CB.FormattingEnabled = true;
-            BasicWorkerDayoffType_CB.Location = new Point(596, 36);
+            BasicWorkerDayoffType_CB.Location = new Point(1141, 39);
             BasicWorkerDayoffType_CB.Name = "BasicWorkerDayoffType_CB";
             BasicWorkerDayoffType_CB.Size = new Size(121, 23);
             BasicWorkerDayoffType_CB.TabIndex = 2;
@@ -106,7 +125,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(19, 15);
+            label1.Location = new Point(22, 18);
             label1.Name = "label1";
             label1.Size = new Size(52, 15);
             label1.TabIndex = 1;
@@ -146,7 +165,6 @@
             WorkerNotificatin_DGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             WorkerNotificatin_DGV.Size = new Size(748, 399);
             WorkerNotificatin_DGV.TabIndex = 0;
-            WorkerNotificatin_DGV.CellDoubleClick += PreviewRejectionMessage_CellMouseDoubleClick;
             // 
             // RequestNumber
             // 
@@ -172,38 +190,62 @@
             RequestStatus.Name = "RequestStatus";
             RequestStatus.ReadOnly = true;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { LogoutWorker_BTN });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(762, 24);
+            menuStrip1.TabIndex = 2;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // LogoutWorker_BTN
+            // 
+            LogoutWorker_BTN.Name = "LogoutWorker_BTN";
+            LogoutWorker_BTN.Size = new Size(63, 20);
+            LogoutWorker_BTN.Text = "Wyloguj";
+            LogoutWorker_BTN.Click += LogoutWorker_BTN_Click;
+            // 
             // BasicWorkerApplicationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(762, 433);
-            Controls.Add(BasicWorkerTabControl);
+            Controls.Add(tableLayoutPanel1);
+            MainMenuStrip = menuStrip1;
             MaximumSize = new Size(991, 624);
             MinimumSize = new Size(778, 472);
             Name = "BasicWorkerApplicationForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Panel pracownika";
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             BasicWorkerTabControl.ResumeLayout(false);
             BasicWorkerSendRequest_TP.ResumeLayout(false);
             BasicWorkerSendRequest_TP.PerformLayout();
             BasicWorkerNotifications_TP.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)WorkerNotificatin_DGV).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
+        private TableLayoutPanel tableLayoutPanel1;
         private TabControl BasicWorkerTabControl;
         private TabPage BasicWorkerSendRequest_TP;
-        private TabPage BasicWorkerNotifications_TP;
-        private Label label1;
-        private RichTextBox RequestContent_RTB;
-        private ComboBox BasicWorkerDayoffType_CB;
         private Button SendRequest_BTN;
         private Label label2;
+        private ComboBox BasicWorkerDayoffType_CB;
+        private Label label1;
+        private RichTextBox RequestContent_RTB;
+        private TabPage BasicWorkerNotifications_TP;
         private DataGridView WorkerNotificatin_DGV;
         private DataGridViewTextBoxColumn RequestNumber;
         private DataGridViewTextBoxColumn DayoffType;
         private DataGridViewTextBoxColumn RequestStatus;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem LogoutWorker_BTN;
     }
 }

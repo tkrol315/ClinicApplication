@@ -10,7 +10,7 @@ namespace ClinicApp.Repositories
         {
         }
 
-        public async Task<IEnumerable<Request>> GetAllRequestsForUserWithId(int userId)
+        public async Task<IEnumerable<Request>> GetAllRequestsForUserByUserId(int userId)
         {
            var requests = await _dbContext.Requests
                 .Include(r => r.RequestState)
@@ -28,6 +28,7 @@ namespace ClinicApp.Repositories
                 .ToListAsync();
             return requests;
         }
-    
+
+       
     }
 }

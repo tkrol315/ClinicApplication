@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Repositories.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepositoryAsync<User>
     {
         Task<User> GetUserByLoginWithRole(string login);
+        Task<User> GetUserWithSchedulesByUserId(int id);
     }
 }

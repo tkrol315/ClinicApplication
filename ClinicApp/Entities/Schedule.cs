@@ -12,6 +12,7 @@ namespace ClinicApp.Entities
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public TimeOfDay TimeOfDay { get; set; }
+        public bool IsDayOff { get; set; } = false;
         public virtual List<User> Users { get; set; }
 
         public override string ToString()

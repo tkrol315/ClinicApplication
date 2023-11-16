@@ -3,7 +3,7 @@ using ClinicApp.Repositories.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace ClinicApp.Queries.ReceptionisQueries.GetAllRequests
+namespace ClinicApp.Queries.GetAllRequestsByStateId
 {
     public class GetAllRequestByStateIdQueryHandler : IRequestHandler<GetAllRequestsByStateIdQuery, List<Request>>
     {

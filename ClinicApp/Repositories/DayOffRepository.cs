@@ -9,11 +9,18 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Repositories
 {
-    public class DayOffRepository : RepositoryAsync<DayOff>, IDayOffRepository
+    public class DayOffRepository : 
+        RepositoryAsync<DayOff>, IDayOffRepository
     {
         public DayOffRepository(ClinicDbContext dbContext) : base(dbContext)
         {
 
+        }
+
+        public async Task AddRange(IEnumerable<DayOff> dayOffs)
+        {
+            await _dbContext.DaysOff.AddRangeAsync(dayOffs);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<DayOff>> GetAllDaysOffByUserId(int userId)

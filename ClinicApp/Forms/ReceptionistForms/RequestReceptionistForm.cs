@@ -70,7 +70,7 @@ namespace ClinicApp.Forms.ReceptionistForms
             {
                 foreach (var schedule in schedules)
                 {
-                    if (schedule.Date > selectedScheduleDate && RequestDateTo_CB.Items.Count <= request.User.DaysOffOnDemandPull)
+                    if (schedule.Date >= selectedScheduleDate && RequestDateTo_CB.Items.Count < request.User.DaysOffOnDemandPull)
                     {
                         RequestDateTo_CB.Items.Add(schedule.ToString());
                     }
