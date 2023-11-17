@@ -30,23 +30,25 @@
         {
             components = new System.ComponentModel.Container();
             Logout_BTN = new ContextMenuStrip(components);
-            contextMenuStrip1 = new ContextMenuStrip(components);
             tableLayoutPanel1 = new TableLayoutPanel();
             ManagerTabControl = new TabControl();
             RequestManager_TP = new TabPage();
-            WorkerScheduleManager_BTN = new Button();
-            RejectRequestManager_BTN = new Button();
-            AcceptRequestManager_BTN = new Button();
+            tableLayoutPanel2 = new TableLayoutPanel();
             RequestManager_DGV = new DataGridView();
             RequestIdManager = new DataGridViewTextBoxColumn();
             From = new DataGridViewTextBoxColumn();
             To = new DataGridViewTextBoxColumn();
+            panel2 = new Panel();
+            WorkerScheduleManager_BTN = new Button();
+            AcceptRequestManager_BTN = new Button();
+            C = new Button();
             ManagerHistory_TP = new TabPage();
             RequestHistory_DGV = new DataGridView();
             WorkerName = new DataGridViewTextBoxColumn();
             WorkerSurname = new DataGridViewTextBoxColumn();
             FromDateHistory = new DataGridViewTextBoxColumn();
             ToDateHistory = new DataGridViewTextBoxColumn();
+            DayOffType = new DataGridViewTextBoxColumn();
             ManagerSubstitutions_TP = new TabPage();
             Substitutions_DGV = new DataGridView();
             WorkerNameSubstitutions = new DataGridViewTextBoxColumn();
@@ -58,7 +60,9 @@
             tableLayoutPanel1.SuspendLayout();
             ManagerTabControl.SuspendLayout();
             RequestManager_TP.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)RequestManager_DGV).BeginInit();
+            panel2.SuspendLayout();
             ManagerHistory_TP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)RequestHistory_DGV).BeginInit();
             ManagerSubstitutions_TP.SuspendLayout();
@@ -70,11 +74,6 @@
             // 
             Logout_BTN.Name = "Logout_BTN";
             Logout_BTN.Size = new Size(61, 4);
-            // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
             // 
             // tableLayoutPanel1
             // 
@@ -88,6 +87,7 @@
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Size = new Size(800, 450);
             tableLayoutPanel1.TabIndex = 2;
             // 
@@ -102,13 +102,11 @@
             ManagerTabControl.SelectedIndex = 0;
             ManagerTabControl.Size = new Size(794, 419);
             ManagerTabControl.TabIndex = 4;
+            ManagerTabControl.SelectedIndexChanged += ManagerTabControl_SelectedIndexChanged;
             // 
             // RequestManager_TP
             // 
-            RequestManager_TP.Controls.Add(WorkerScheduleManager_BTN);
-            RequestManager_TP.Controls.Add(RejectRequestManager_BTN);
-            RequestManager_TP.Controls.Add(AcceptRequestManager_BTN);
-            RequestManager_TP.Controls.Add(RequestManager_DGV);
+            RequestManager_TP.Controls.Add(tableLayoutPanel2);
             RequestManager_TP.Location = new Point(4, 24);
             RequestManager_TP.Name = "RequestManager_TP";
             RequestManager_TP.Padding = new Padding(3);
@@ -117,35 +115,20 @@
             RequestManager_TP.Text = "Wnisoki";
             RequestManager_TP.UseVisualStyleBackColor = true;
             // 
-            // WorkerScheduleManager_BTN
+            // tableLayoutPanel2
             // 
-            WorkerScheduleManager_BTN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            WorkerScheduleManager_BTN.Location = new Point(2448, 1265);
-            WorkerScheduleManager_BTN.Name = "WorkerScheduleManager_BTN";
-            WorkerScheduleManager_BTN.Size = new Size(91, 39);
-            WorkerScheduleManager_BTN.TabIndex = 3;
-            WorkerScheduleManager_BTN.Text = "Grafik";
-            WorkerScheduleManager_BTN.UseVisualStyleBackColor = true;
-            // 
-            // RejectRequestManager_BTN
-            // 
-            RejectRequestManager_BTN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            RejectRequestManager_BTN.Location = new Point(2351, 1265);
-            RejectRequestManager_BTN.Name = "RejectRequestManager_BTN";
-            RejectRequestManager_BTN.Size = new Size(91, 39);
-            RejectRequestManager_BTN.TabIndex = 2;
-            RejectRequestManager_BTN.Text = "Odrzuć";
-            RejectRequestManager_BTN.UseVisualStyleBackColor = true;
-            // 
-            // AcceptRequestManager_BTN
-            // 
-            AcceptRequestManager_BTN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            AcceptRequestManager_BTN.Location = new Point(2254, 1265);
-            AcceptRequestManager_BTN.Name = "AcceptRequestManager_BTN";
-            AcceptRequestManager_BTN.Size = new Size(91, 39);
-            AcceptRequestManager_BTN.TabIndex = 1;
-            AcceptRequestManager_BTN.Text = "Zatwierdź";
-            AcceptRequestManager_BTN.UseVisualStyleBackColor = true;
+            tableLayoutPanel2.ColumnCount = 1;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Controls.Add(RequestManager_DGV, 0, 0);
+            tableLayoutPanel2.Controls.Add(panel2, 0, 1);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(3, 3);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 2;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
+            tableLayoutPanel2.Size = new Size(780, 385);
+            tableLayoutPanel2.TabIndex = 0;
             // 
             // RequestManager_DGV
             // 
@@ -159,8 +142,8 @@
             RequestManager_DGV.ReadOnly = true;
             RequestManager_DGV.RowTemplate.Height = 25;
             RequestManager_DGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            RequestManager_DGV.Size = new Size(780, 385);
-            RequestManager_DGV.TabIndex = 0;
+            RequestManager_DGV.Size = new Size(774, 309);
+            RequestManager_DGV.TabIndex = 1;
             // 
             // RequestIdManager
             // 
@@ -183,6 +166,50 @@
             To.ReadOnly = true;
             To.Resizable = DataGridViewTriState.False;
             // 
+            // panel2
+            // 
+            panel2.Controls.Add(WorkerScheduleManager_BTN);
+            panel2.Controls.Add(AcceptRequestManager_BTN);
+            panel2.Controls.Add(C);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(3, 318);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(774, 64);
+            panel2.TabIndex = 2;
+            // 
+            // WorkerScheduleManager_BTN
+            // 
+            WorkerScheduleManager_BTN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            WorkerScheduleManager_BTN.Location = new Point(667, 12);
+            WorkerScheduleManager_BTN.Name = "WorkerScheduleManager_BTN";
+            WorkerScheduleManager_BTN.Size = new Size(91, 39);
+            WorkerScheduleManager_BTN.TabIndex = 3;
+            WorkerScheduleManager_BTN.Text = "Grafik";
+            WorkerScheduleManager_BTN.UseVisualStyleBackColor = true;
+            WorkerScheduleManager_BTN.Click += ShowSchedule_BTN_Click;
+            // 
+            // AcceptRequestManager_BTN
+            // 
+            AcceptRequestManager_BTN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            AcceptRequestManager_BTN.Location = new Point(473, 12);
+            AcceptRequestManager_BTN.Name = "AcceptRequestManager_BTN";
+            AcceptRequestManager_BTN.Size = new Size(91, 39);
+            AcceptRequestManager_BTN.TabIndex = 1;
+            AcceptRequestManager_BTN.Text = "Zatwierdź";
+            AcceptRequestManager_BTN.UseVisualStyleBackColor = true;
+            AcceptRequestManager_BTN.Click += AcceptRejectRequestManager_BTN_Click;
+            // 
+            // C
+            // 
+            C.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            C.Location = new Point(570, 12);
+            C.Name = "C";
+            C.Size = new Size(91, 39);
+            C.TabIndex = 2;
+            C.Text = "Odrzuć";
+            C.UseVisualStyleBackColor = true;
+            C.Click += AcceptRejectRequestManager_BTN_Click;
+            // 
             // ManagerHistory_TP
             // 
             ManagerHistory_TP.Controls.Add(RequestHistory_DGV);
@@ -199,12 +226,13 @@
             RequestHistory_DGV.AllowUserToAddRows = false;
             RequestHistory_DGV.AllowUserToDeleteRows = false;
             RequestHistory_DGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            RequestHistory_DGV.Columns.AddRange(new DataGridViewColumn[] { WorkerName, WorkerSurname, FromDateHistory, ToDateHistory });
+            RequestHistory_DGV.Columns.AddRange(new DataGridViewColumn[] { WorkerName, WorkerSurname, FromDateHistory, ToDateHistory, DayOffType });
             RequestHistory_DGV.Dock = DockStyle.Fill;
             RequestHistory_DGV.Location = new Point(3, 3);
             RequestHistory_DGV.Name = "RequestHistory_DGV";
             RequestHistory_DGV.ReadOnly = true;
             RequestHistory_DGV.RowTemplate.Height = 25;
+            RequestHistory_DGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             RequestHistory_DGV.Size = new Size(780, 385);
             RequestHistory_DGV.TabIndex = 0;
             // 
@@ -239,6 +267,14 @@
             ToDateHistory.HeaderText = "Do";
             ToDateHistory.Name = "ToDateHistory";
             ToDateHistory.ReadOnly = true;
+            // 
+            // DayOffType
+            // 
+            DayOffType.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            DayOffType.FillWeight = 25F;
+            DayOffType.HeaderText = "Rodzaj wolnego";
+            DayOffType.Name = "DayOffType";
+            DayOffType.ReadOnly = true;
             // 
             // ManagerSubstitutions_TP
             // 
@@ -327,7 +363,9 @@
             tableLayoutPanel1.PerformLayout();
             ManagerTabControl.ResumeLayout(false);
             RequestManager_TP.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)RequestManager_DGV).EndInit();
+            panel2.ResumeLayout(false);
             ManagerHistory_TP.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)RequestHistory_DGV).EndInit();
             ManagerSubstitutions_TP.ResumeLayout(false);
@@ -339,23 +377,14 @@
 
         #endregion
         private ContextMenuStrip Logout_BTN;
-        private ContextMenuStrip contextMenuStrip1;
         private TableLayoutPanel tableLayoutPanel1;
         private TabControl ManagerTabControl;
         private TabPage RequestManager_TP;
         private Button WorkerScheduleManager_BTN;
-        private Button RejectRequestManager_BTN;
+        private Button C;
         private Button AcceptRequestManager_BTN;
-        private DataGridView RequestManager_DGV;
-        private DataGridViewTextBoxColumn RequestIdManager;
-        private DataGridViewTextBoxColumn From;
-        private DataGridViewTextBoxColumn To;
         private TabPage ManagerHistory_TP;
         private DataGridView RequestHistory_DGV;
-        private DataGridViewTextBoxColumn WorkerName;
-        private DataGridViewTextBoxColumn WorkerSurname;
-        private DataGridViewTextBoxColumn FromDateHistory;
-        private DataGridViewTextBoxColumn ToDateHistory;
         private TabPage ManagerSubstitutions_TP;
         private DataGridView Substitutions_DGV;
         private DataGridViewTextBoxColumn WorkerNameSubstitutions;
@@ -364,5 +393,16 @@
         private DataGridViewTextBoxColumn ToDateSubstitutions;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem ManagerLogout_BTN;
+        private DataGridViewTextBoxColumn WorkerName;
+        private DataGridViewTextBoxColumn WorkerSurname;
+        private DataGridViewTextBoxColumn FromDateHistory;
+        private DataGridViewTextBoxColumn ToDateHistory;
+        private DataGridViewTextBoxColumn DayOffType;
+        private TableLayoutPanel tableLayoutPanel2;
+        private DataGridView RequestManager_DGV;
+        private DataGridViewTextBoxColumn RequestIdManager;
+        private DataGridViewTextBoxColumn From;
+        private DataGridViewTextBoxColumn To;
+        private Panel panel2;
     }
 }

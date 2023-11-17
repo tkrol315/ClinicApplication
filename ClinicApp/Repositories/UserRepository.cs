@@ -30,10 +30,11 @@ namespace ClinicApp.Repositories
 
       
 
-        public async Task<User> GetUserWithSchedulesByUserId(int id)
+        public async Task<User> GetUserWithSchedulesAndDaysOffByUserId(int id)
         {
             var user = await _dbContext.Users
                 .Include(u => u.Schedules)
+                .Include(u => u.DaysOff)
                 .FirstOrDefaultAsync(u => u.Id == id);
             return user;
         }

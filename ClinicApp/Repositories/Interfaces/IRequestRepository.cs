@@ -8,5 +8,6 @@ namespace ClinicApp.Repositories.Interfaces
         Task<IEnumerable<Request>> GetAllRequestsWithUserAndDayOffTypeByStateId(int id);
         Task<IEnumerable<Request>> GetAllRequestsForUserByUserId(int id);
        
+        Task<IEnumerable<Request>> GetAllRequestsWithUserAndDayOffTypeByStateIds(int[] ids);
     }
 }

@@ -1,6 +1,6 @@
-﻿using ClinicApp.Commands.WorkerCommands.CreateRequest;
-using ClinicApp.Queries.WorkerQueries.GetAllWorkerRequests;
-using ClinicApp.Queries.WorkerQueries.GetRejectionMessage;
+﻿using ClinicApp.Commands.CreateRequest;
+using ClinicApp.Queries.GetAllWorkerRequests;
+using ClinicApp.Queries.GetRejectionMessageByRequestId;
 using ClinicApp.Repositories.Interfaces;
 using ClinicApp.Services.LogoutService;
 using MediatR;

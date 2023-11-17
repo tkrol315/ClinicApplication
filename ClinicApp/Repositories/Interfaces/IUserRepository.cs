@@ -1,9 +1,4 @@
 ﻿using ClinicApp.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClinicApp.Repositories.Interfaces
 {
@@ -11,7 +6,6 @@ namespace ClinicApp.Repositories.Interfaces
     {
         Task<User> GetUserByLoginWithRole(string login);
         Task<User> GetUserWithSchedulesAndRequestsByUserId(int id);
-   
-        Task<User> GetUserWithSchedulesByUserId(int id);
+        Task<User> GetUserWithSchedulesAndDaysOffByUserId(int id);
     }
 }

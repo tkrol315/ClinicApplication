@@ -1,14 +1,5 @@
 ﻿using ClinicApp.Entities;
 using ClinicApp.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ClinicApp.Forms
 {
@@ -16,23 +7,40 @@ namespace ClinicApp.Forms
     {
         public List<Schedule> UserSchedules { get; set; }
         public List<DayOff> DaysOff { get; set; }
+
         public WorkScheduleForm()
         {
             InitializeComponent();
           
         }
-
+     
         public void FillDGV()
         {
-            
-            //create schedule if day off validation
-            foreach (var schedule in UserSchedules) 
+            int counter = 0;
+            object[] data;
+           
+            for(DateTime i = UserSchedules[0].Date; i <= UserSchedules.Last().Date; i = i.AddDays(1))
             {
-                object[] data = {
-                        schedule.Date.ToString("dd-MM-yyyy"),
-                        schedule.TimeOfDay == TimeOfDay.Morning ? "Poranna" : "Popołudniowa",
+                if (i.Date == UserSchedules[counter].Date)
+                {
+                    var isDayOff = DaysOff.Any(d => d.Date.Date == UserSchedules[counter].Date.Date);
+                    data = new object[]
+                    {
+                        UserSchedules[counter].Date.ToString("dd-MM-yyyy"),
+                        UserSchedules[counter].TimeOfDay == TimeOfDay.Morning ? "Poranna" : "Popołudniowa",
+                        isDayOff ? "TAK" : "NIE"
+                    };
+                    counter++;
+                }
+                else
+                {
+                    data = new object[]
+                    {
+                        i.ToString("dd-MM-yyyy"),
+                        "Wolne",
                         "NIE"
                     };
+                }
                 WorkSchedule_DGV.Rows.Add(data);
             }
         }

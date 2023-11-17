@@ -25,6 +25,7 @@ namespace ClinicApp.Repositories
 
         public async Task<IEnumerable<DayOff>> GetAllDaysOffByUserId(int userId)
         {
+                
             var user = await _dbContext.Users
                 .Include(u => u.DaysOff)
                 .SingleAsync(u => u.Id == userId);
