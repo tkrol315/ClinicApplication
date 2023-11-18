@@ -32,9 +32,9 @@
             Name_TB = new TextBox();
             Surname_TB = new TextBox();
             label2 = new Label();
-            Daysoff_TB = new TextBox();
+            DaysOff_TB = new TextBox();
             label3 = new Label();
-            Role_TB = new TextBox();
+            Login_TB = new TextBox();
             label4 = new Label();
             EditWorker_BTN = new Button();
             SuspendLayout();
@@ -42,7 +42,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(80, 49);
+            label1.Location = new Point(83, 61);
             label1.Name = "label1";
             label1.Size = new Size(30, 15);
             label1.TabIndex = 0;
@@ -50,14 +50,14 @@
             // 
             // Name_TB
             // 
-            Name_TB.Location = new Point(127, 49);
+            Name_TB.Location = new Point(130, 61);
             Name_TB.Name = "Name_TB";
             Name_TB.Size = new Size(133, 23);
-            Name_TB.TabIndex = 1;
+            Name_TB.TabIndex = 2;
             // 
             // Surname_TB
             // 
-            Surname_TB.Location = new Point(127, 87);
+            Surname_TB.Location = new Point(130, 99);
             Surname_TB.Name = "Surname_TB";
             Surname_TB.Size = new Size(133, 23);
             Surname_TB.TabIndex = 3;
@@ -65,69 +65,72 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(53, 87);
+            label2.Location = new Point(56, 99);
             label2.Name = "label2";
             label2.Size = new Size(57, 15);
             label2.TabIndex = 2;
             label2.Text = "Nazwisko";
             // 
-            // Daysoff_TB
+            // DaysOff_TB
             // 
-            Daysoff_TB.Location = new Point(127, 126);
-            Daysoff_TB.Name = "Daysoff_TB";
-            Daysoff_TB.Size = new Size(133, 23);
-            Daysoff_TB.TabIndex = 5;
+            DaysOff_TB.Location = new Point(130, 138);
+            DaysOff_TB.Name = "DaysOff_TB";
+            DaysOff_TB.Size = new Size(133, 23);
+            DaysOff_TB.TabIndex = 4;
+            DaysOff_TB.KeyPress += DaysOff_TB_KeyPress;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(41, 126);
+            label3.Location = new Point(44, 138);
             label3.Name = "label3";
             label3.Size = new Size(69, 15);
             label3.TabIndex = 4;
             label3.Text = "Ilość urlopu";
             // 
-            // Role_TB
+            // Login_TB
             // 
-            Role_TB.Location = new Point(127, 168);
-            Role_TB.Name = "Role_TB";
-            Role_TB.Size = new Size(133, 23);
-            Role_TB.TabIndex = 7;
+            Login_TB.Location = new Point(130, 24);
+            Login_TB.Name = "Login_TB";
+            Login_TB.Size = new Size(133, 23);
+            Login_TB.TabIndex = 1;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(43, 168);
+            label4.Location = new Point(76, 32);
             label4.Name = "label4";
-            label4.Size = new Size(67, 15);
+            label4.Size = new Size(37, 15);
             label4.TabIndex = 6;
-            label4.Text = "Stanowisko";
+            label4.Text = "Login";
             // 
             // EditWorker_BTN
             // 
-            EditWorker_BTN.Location = new Point(106, 226);
+            EditWorker_BTN.Location = new Point(107, 186);
+            EditWorker_BTN.MaximumSize = new Size(131, 37);
+            EditWorker_BTN.MinimumSize = new Size(131, 37);
             EditWorker_BTN.Name = "EditWorker_BTN";
             EditWorker_BTN.Size = new Size(131, 37);
-            EditWorker_BTN.TabIndex = 8;
+            EditWorker_BTN.TabIndex = 5;
             EditWorker_BTN.Text = "Zapisz";
             EditWorker_BTN.UseVisualStyleBackColor = true;
+            EditWorker_BTN.Click += EditWorker_BTN_Click;
             // 
             // EditWorkerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(337, 282);
+            ClientSize = new Size(337, 235);
             Controls.Add(EditWorker_BTN);
-            Controls.Add(Role_TB);
+            Controls.Add(Login_TB);
             Controls.Add(label4);
-            Controls.Add(Daysoff_TB);
+            Controls.Add(DaysOff_TB);
             Controls.Add(label3);
             Controls.Add(Surname_TB);
             Controls.Add(label2);
             Controls.Add(Name_TB);
             Controls.Add(label1);
             MaximumSize = new Size(353, 321);
-            MinimumSize = new Size(353, 321);
             Name = "EditWorkerForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Edycja pracownika";
@@ -141,9 +144,9 @@
         private TextBox Name_TB;
         private TextBox Surname_TB;
         private Label label2;
-        private TextBox Daysoff_TB;
+        private TextBox DaysOff_TB;
         private Label label3;
-        private TextBox Role_TB;
+        private TextBox Login_TB;
         private Label label4;
         private Button EditWorker_BTN;
     }

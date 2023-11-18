@@ -64,5 +64,10 @@ namespace ClinicApp.Repositories
                 .Include(u => u.DaysOff)
                 .FirstOrDefaultAsync(u => u.Id == id);
         }
+
+        public async Task<IEnumerable<User>> GetAllUsersWithRoles()
+        {
+            return await _dbContext.Users.Include(u => u.Role).ToListAsync();
+        }
     }
 }
