@@ -23,38 +23,34 @@ namespace ClinicApp.Forms
 
             for (DateTime i = User.Schedules[0].Date; i <= User.Schedules[User.Schedules.Count - 1].Date; i = i.AddDays(1))
             {
-                isDayOff = User.DaysOff.Any(d => d.Date.Date == User.Schedules[counter].Date.Date);
-
-                if (i.Date == User.Schedules[counter].Date)
+                var currentSchedule = User.Schedules[counter];
+                if (i.Date == currentSchedule.Date)
                 {
+                    isDayOff = User.DaysOff.Any(d => d.Date.Date == currentSchedule.Date);
                     data = new object[]
                     {
-                       User.Schedules[counter].Date.ToString("dd-MM-yyyy"),
-                        User.Schedules[counter].TimeOfDay == TimeOfDay.Morning ? "Poranna" : "Popołudniowa",
+                       currentSchedule.Date.ToString("dd-MM-yyyy"),
+                        currentSchedule.TimeOfDay == TimeOfDay.Morning ? "Poranna" : "Popołudniowa",
                         isDayOff ? "TAK" : "NIE"
                     };
                     counter++;
+                    var index = WorkSchedule_DGV.Rows.Add(data);
+                    WorkSchedule_DGV.Rows[index].DefaultCellStyle.BackColor = isDayOff ? Color.YellowGreen : Color.OrangeRed;
                 }
                 else
                 {
                     isSubstitution = User.Substitutions.Any(s => s.Date == i.Date);
-                    isDayOff = false;
+
                     data = new object[]
                     {
                         i.ToString("dd-MM-yyyy"),
                         isSubstitution ? "Zastępstwo" : "Wolne",
                         "NIE"
                     };
+                    var index = WorkSchedule_DGV.Rows.Add(data);
+                    WorkSchedule_DGV.Rows[index].DefaultCellStyle.BackColor = isSubstitution ? Color.Yellow : Color.SpringGreen;
                 }
-                var index = WorkSchedule_DGV.Rows.Add(data);
-                if(isDayOff)
-                {
-                    WorkSchedule_DGV.Rows[index].DefaultCellStyle.BackColor = Color.SpringGreen;
-                }
-                else if (isSubstitution)
-                {
-                    WorkSchedule_DGV.Rows[index].DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
-                }
+              
             }
         }
     }
