@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Queries.GetUserAvailableSchedules
 {
-    public record GetUserAvailableSchedulesQuary : IRequest<List<Schedule>>
+    public record GetUserAvailableSchedulesQuery : IRequest<List<Schedule>>
     {
-        public GetUserAvailableSchedulesQuary(int userId)
+        public GetUserAvailableSchedulesQuery(int userId)
         {
             UserId = userId;
         }
-        public int UserId { get; init; }
+        public int UserId { get;}
     }
 }

@@ -19,6 +19,7 @@ namespace ClinicApp.Entities
         public DbSet<DayOffType> DayOffTypes { get; set; }
         public DbSet<DayOff> DaysOff { get; set; }
         public DbSet<RequestState> RequestStates { get; set; }
+        public DbSet<Substitution> Substitutions { get; set; }
        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -63,8 +63,8 @@ namespace ClinicApp.Forms
         public async Task LoadRequestToNotificationPanel()
         {
             WorkerNotificatin_DGV.Rows.Clear();
-            var quary = new GetAllWorkerRequestsQuary(UserSession.CurrentUser.Id);
-            var requests = await _mediator.Send(quary);
+            var query = new GetAllWorkerRequestsQuery(UserSession.CurrentUser.Id);
+            var requests = await _mediator.Send(query);
             foreach (var request in requests)
             {
                 object[] data = { request.Id, request.DayOffType.Name, request.RequestState.Message };
@@ -93,7 +93,7 @@ namespace ClinicApp.Forms
             if (WorkerNotificatin_DGV.Rows[rowIndex].DefaultCellStyle.BackColor == _rejectedNotificationColor)
             {
                 var requestId = Convert.ToInt32(WorkerNotificatin_DGV.Rows[rowIndex].Cells["RequestNumber"].Value);
-                var query = new GetRejectionMessageByRequestIdQuary(requestId);
+                var query = new GetRejectionMessageByRequestIdQuery(requestId);
                 var message = await _mediator.Send(query);
                 MessageBox.Show("Powód odrzucenia: " + message);
             }

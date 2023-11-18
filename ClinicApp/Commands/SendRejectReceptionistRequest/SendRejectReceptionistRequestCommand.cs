@@ -11,7 +11,7 @@ namespace ClinicApp.Commands.SendRejectReceptionistRequest
             Request = request;
         }
 
-        public string Message { get; init; }
-        public Request Request { get; init; }
+        public string Message { get; }
+        public Request Request { get; }
     }
 }

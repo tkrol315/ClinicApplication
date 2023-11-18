@@ -20,6 +20,14 @@ namespace ClinicApp.Repositories
 
         }
 
+        public async Task<IEnumerable<User>> GetUsersWithSchedulesByRoleId(int roleId)
+        {
+            return await _dbContext.Users
+                .Include(u => u.Schedules)
+                .Where(u => u.RoleId == roleId)
+                .ToListAsync();
+        }
+
         public async Task<User> GetUserByLoginWithRole(string login)
         {
             var user = await _dbContext.Users
@@ -48,6 +56,13 @@ namespace ClinicApp.Repositories
             return user;
         }
 
-       
+        public async Task<User> GetUserWithSchedulesSubstitutionsAndDaysOffById(int id)
+        {
+           return await _dbContext.Users
+                .Include(u => u.Schedules)
+                .Include(u => u.Substitutions)
+                .Include(u => u.DaysOff)
+                .FirstOrDefaultAsync(u => u.Id == id);
+        }
     }
 }

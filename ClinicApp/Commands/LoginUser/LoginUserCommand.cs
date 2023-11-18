@@ -10,8 +10,8 @@ namespace ClinicApp.Commands.LoginUser
             Login = login;
             Password = password;
         }
-        public string Login { get; private set; }
-        public string Password { get; private set; }
+        public string Login { get; }
+        public string Password { get; }
 
     }
 

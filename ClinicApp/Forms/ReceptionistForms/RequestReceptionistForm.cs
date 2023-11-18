@@ -2,8 +2,7 @@
 using ClinicApp.Commands.SendRejectReceptionistRequest;
 using ClinicApp.Entities;
 using ClinicApp.Queries.GetUserAvailableSchedules;
-using ClinicApp.Queries.GetUserDaysOff;
-using ClinicApp.Queries.GetUserSchedules;
+using ClinicApp.Queries.GetUserSubstitutions;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,7 +26,7 @@ namespace ClinicApp.Forms.ReceptionistForms
         {
             this.request = request;
             RequestContent_RTB.Text = request.Message;
-            var query = new GetUserAvailableSchedulesQuary(request.UserId);
+            var query = new GetUserAvailableSchedulesQuery(request.UserId);
             schedules = await _mediator.Send(query);
             FillFromDateComboBox();
         }
@@ -115,10 +114,8 @@ namespace ClinicApp.Forms.ReceptionistForms
         {
             var scheduleForm = _serviceProvider.GetRequiredService<WorkScheduleForm>();
             scheduleForm.Text = $"Grafik - {request.User.Name} {request.User.Surname}";
-            var quarySchadules = new GetUserSchedulesQuary(request.UserId);
-            var quaryDaysOff = new GetUserDaysOffQuary(request.UserId);
-            scheduleForm.UserSchedules = await _mediator.Send(quarySchadules);
-            scheduleForm.DaysOff = await _mediator.Send(quaryDaysOff);
+            var query = new GetUserWithSchedulesSubstitutionsAndDaysOffQuery(request.UserId);
+            scheduleForm.User = await _mediator.Send(query);
             scheduleForm.FillDGV();
             scheduleForm.ShowDialog();
         }

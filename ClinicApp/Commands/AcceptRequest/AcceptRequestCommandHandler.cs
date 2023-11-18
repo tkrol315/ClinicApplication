@@ -15,8 +15,7 @@ namespace ClinicApp.Commands.AcceptRequestCommand
         private readonly IRequestRepository _requestRepository;
         public AcceptRequestCommandHandler(
             IUserRepository userRepository,
-            IRequestRepository requestRepository,
-            IDayOffRepository dayOffRepository)
+            IRequestRepository requestRepository)
         {
             _userRepository = userRepository;
             _requestRepository = requestRepository;
@@ -38,6 +37,10 @@ namespace ClinicApp.Commands.AcceptRequestCommand
                         Date = schedule.Date,
                     };
                     user.DaysOff.Add(dayOff);
+                    request.Request.Substitution =  new Substitution()
+                    {
+                        Date = schedule.Date,
+                    };
                     dayOffCounter++;
                 }
             }

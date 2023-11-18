@@ -4,8 +4,8 @@ using ClinicApp.Commands.RejectRequest;
 using ClinicApp.Entities;
 using ClinicApp.Queries.GetAllRequestsByStateId;
 using ClinicApp.Queries.GetAllRequestsByStateIds;
-using ClinicApp.Queries.GetUserDaysOff;
-using ClinicApp.Queries.GetUserSchedules;
+using ClinicApp.Queries.GetAllSubstitutions;
+using ClinicApp.Queries.GetUserSubstitutions;
 using ClinicApp.Services.LogoutService;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,8 +32,8 @@ namespace ClinicApp.Forms.ManagerForms
         private async Task LoadRequestsHistroy()
         {
             RequestHistory_DGV.Rows.Clear();
-            var quary = new GetAllRequestsByStateIdsQuary(new int[] { 2, 4 });
-            var requests = await _mediator.Send(quary);
+            var query = new GetAllRequestsByStateIdsQuery(new int[] { 2, 4 });
+            var requests = await _mediator.Send(query);
 
             foreach (var request in requests)
             {
@@ -57,8 +57,8 @@ namespace ClinicApp.Forms.ManagerForms
         private async void LoadRequests()
         {
             RequestManager_DGV.Rows.Clear();
-            var quary = new GetAllRequestsByStateIdQuery(3);
-            Requests = await _mediator.Send(quary);
+            var query = new GetAllRequestsByStateIdQuery(3);
+            Requests = await _mediator.Send(query);
 
             foreach (var request in Requests)
             {
@@ -103,14 +103,6 @@ namespace ClinicApp.Forms.ManagerForms
 
         private async void ShowSchedule_BTN_Click(object sender, EventArgs e)
         {
-            //var scheduleForm = _serviceProvider.GetRequiredService<WorkScheduleForm>();
-            //scheduleForm.Text = $"Grafik - {request.User.Name} {request.User.Surname}";
-            //var quarySchadules = new GetUserSchedulesQuary(request.UserId);
-            //var quaryDaysOff = new GetUserDaysOffQuary(request.UserId);
-            //scheduleForm.UserSchedules = await _mediator.Send(quarySchadules);
-            //scheduleForm.DaysOff = await _mediator.Send(quaryDaysOff);
-            //scheduleForm.FillDGV();
-            //scheduleForm.ShowDialog();
             if (RequestManager_DGV.SelectedRows.Count > 0)
             {
                 var selectedRequestCell = RequestManager_DGV.SelectedRows[0].Cells[0].Value;
@@ -119,10 +111,8 @@ namespace ClinicApp.Forms.ManagerForms
                     var request = Requests.FirstOrDefault(r => r.Id == selectedRequestId);
                     var scheduleForm = _serviceProvider.GetRequiredService<WorkScheduleForm>();
                     scheduleForm.Text = $"Grafik - {request.User.Name} {request.User.Surname}";
-                    var schdulesQuary = new GetUserSchedulesQuary(request.UserId);
-                    var daysOffQuary = new GetUserDaysOffQuary(request.UserId);
-                    scheduleForm.UserSchedules = await _mediator.Send(schdulesQuary);
-                    scheduleForm.DaysOff = await _mediator.Send(daysOffQuary);
+                    var query = new GetUserWithSchedulesSubstitutionsAndDaysOffQuery(request.UserId);
+                    scheduleForm.User = await _mediator.Send(query);
                     scheduleForm.FillDGV();
                     scheduleForm.ShowDialog();
                 }
@@ -146,6 +136,55 @@ namespace ClinicApp.Forms.ManagerForms
             int selectedIndex = ManagerTabControl.SelectedIndex;
             if (selectedIndex == 1)
                 await LoadRequestsHistroy();
+            else if (selectedIndex == 2)
+                await LoadSubstitutions();
+        }
+
+        private async Task LoadSubstitutions()
+        {
+            Substitutions_DGV.Rows.Clear();
+
+            var query = new GetAllSubstitutionsWithUsersQuery();
+            var substitutions = await _mediator.Send(query);
+
+            foreach (var substitution in substitutions)
+            {
+                object[] data =
+                {
+                    substitution.Id,
+                    substitution.UserId is null ? "NIE" : "TAK",
+                    substitution.Date.ToString("dd-MM-yyyy"),
+                    substitution.UserId is null ? "BRAK" : substitution.User.Name,
+                    substitution.UserId is null ? "BRAK" : substitution.User.Surname,
+
+                };
+                Substitutions_DGV.Rows.Add(data);
+            }
+        }
+
+        private async void Substitutions_DGV_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (Substitutions_DGV.SelectedRows.Count > 0)
+            {
+
+                if (Substitutions_DGV.SelectedRows[0].Cells[1].Value.ToString() == "NIE")
+                {
+                    var selectedSubstitutionCell = Substitutions_DGV.SelectedRows[0].Cells[0].Value;
+                    if (int.TryParse(selectedSubstitutionCell.ToString(), out var selectedSubstitutionId))
+                    {
+
+                        var assignForm = _serviceProvider.GetRequiredService<AssignSubstitutionForm>();
+                        assignForm.SubstitutionId = selectedSubstitutionId;
+                        await assignForm.LoadAvailableWorkers();
+                        assignForm.ShowDialog();
+                        await LoadSubstitutions();
+                    }
+                    else
+                        MessageBox.Show("Coś poszło nie tak");
+                }
+                else
+                    MessageBox.Show("To zastępstwo zostało już przypisane");
+            }
         }
     }
 }

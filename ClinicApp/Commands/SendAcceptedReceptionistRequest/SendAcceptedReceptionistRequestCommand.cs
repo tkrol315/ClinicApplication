@@ -11,8 +11,8 @@ namespace ClinicApp.Commands.SendAcceptedReceptionistRequest
             From = from;
             To = to;
         }
-        public Request Request { get; init; }
-        public DateTime From { get; init; }
-        public DateTime To { get; init; }
+        public Request Request { get; }
+        public DateTime From { get; }
+        public DateTime To { get; }
     }
 }

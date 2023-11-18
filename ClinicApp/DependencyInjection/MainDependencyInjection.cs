@@ -35,6 +35,7 @@ namespace ClinicApp.DependencyInjection
                     services.AddScoped<IRequestStateRepository, RequestStateRepository>();
                     services.AddScoped<IResponseRepository, ResponseRepository>();
                     services.AddScoped<IDayOffRepository, DayOffRepository>();
+                    services.AddScoped<ISubstitutionRepository, SubstitutionRepository>();
                     services.AddScoped(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
                     services.AddMediatR(typeof(Program));
                     services.AddScoped<IValidator<CreateRequestCommand>, CreateRequestCommandValidator>();

@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Queries.GetUserAvailableSchedules
 {
-    public class GetUserAvailableSchedulesQuaryHandler : IRequestHandler<GetUserAvailableSchedulesQuary, List<Schedule>>
+    public class GetUserAvailableSchedulesQueryHandler : IRequestHandler<GetUserAvailableSchedulesQuery, List<Schedule>>
     {
         private readonly IScheduleRepository _scheduleRepository;
         private readonly IUserRepository _userRepository;
-        public GetUserAvailableSchedulesQuaryHandler(
+        public GetUserAvailableSchedulesQueryHandler(
             IScheduleRepository scheduleRepository,
             IUserRepository userRepository)
         {
             _scheduleRepository = scheduleRepository;
             _userRepository = userRepository;
         }
-        public async Task<List<Schedule>> Handle(GetUserAvailableSchedulesQuary request, CancellationToken cancellationToken)
+        public async Task<List<Schedule>> Handle(GetUserAvailableSchedulesQuery request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetUserWithSchedulesAndRequestsByUserId(request.UserId);
 

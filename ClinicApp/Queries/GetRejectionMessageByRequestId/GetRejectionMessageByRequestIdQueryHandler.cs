@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Queries.GetRejectionMessageByRequestId
 {
-    public class GetRejectionMessageByRequestIdQuaryHandler : IRequestHandler<GetRejectionMessageByRequestIdQuary, string>
+    public class GetRejectionMessageByRequestIdQueryHandler : IRequestHandler<GetRejectionMessageByRequestIdQuery, string>
     {
         private readonly IResponseRepository _responseRepository;
 
-        public GetRejectionMessageByRequestIdQuaryHandler(IResponseRepository responseRepository)
+        public GetRejectionMessageByRequestIdQueryHandler(IResponseRepository responseRepository)
         {
             _responseRepository = responseRepository;
         }
 
-        public async Task<string> Handle(GetRejectionMessageByRequestIdQuary request, CancellationToken cancellationToken)
+        public async Task<string> Handle(GetRejectionMessageByRequestIdQuery request, CancellationToken cancellationToken)
         {
             var response = await _responseRepository.GetResponseByRequestId(request.RequestId);
             return response.Message;

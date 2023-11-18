@@ -15,5 +15,6 @@ namespace ClinicApp.Entities
         public int RequestStateId { get; set; }
         public DateTime From { get; set; }
         public DateTime To { get; set; }    
+        public Substitution Substitution { get; set; }
     }
 }

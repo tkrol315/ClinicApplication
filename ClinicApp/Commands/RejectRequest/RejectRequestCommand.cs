@@ -10,11 +10,13 @@ namespace ClinicApp.Commands.RejectRequest
 {
     public record RejectRequestCommand : IRequest<bool>, IManagerChoiceCommand
     {
-        public Request Request { get; init; }
-
+       
         public RejectRequestCommand(Request request)
         {
             Request = request;
         }
+
+        public Request Request { get; }
+
     }
 }

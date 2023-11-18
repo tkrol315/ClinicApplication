@@ -51,10 +51,11 @@
             DayOffType = new DataGridViewTextBoxColumn();
             ManagerSubstitutions_TP = new TabPage();
             Substitutions_DGV = new DataGridView();
+            SubstitutionId = new DataGridViewTextBoxColumn();
+            SubstitutionCol = new DataGridViewTextBoxColumn();
+            DateSubstitution = new DataGridViewTextBoxColumn();
             WorkerNameSubstitutions = new DataGridViewTextBoxColumn();
             WorkerSurnameSubstitutions = new DataGridViewTextBoxColumn();
-            FromDateSubstitutions = new DataGridViewTextBoxColumn();
-            ToDateSubstitutions = new DataGridViewTextBoxColumn();
             menuStrip1 = new MenuStrip();
             ManagerLogout_BTN = new ToolStripMenuItem();
             tableLayoutPanel1.SuspendLayout();
@@ -292,14 +293,39 @@
             Substitutions_DGV.AllowUserToAddRows = false;
             Substitutions_DGV.AllowUserToDeleteRows = false;
             Substitutions_DGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Substitutions_DGV.Columns.AddRange(new DataGridViewColumn[] { WorkerNameSubstitutions, WorkerSurnameSubstitutions, FromDateSubstitutions, ToDateSubstitutions });
+            Substitutions_DGV.Columns.AddRange(new DataGridViewColumn[] { SubstitutionId, SubstitutionCol, DateSubstitution, WorkerNameSubstitutions, WorkerSurnameSubstitutions });
             Substitutions_DGV.Dock = DockStyle.Fill;
             Substitutions_DGV.Location = new Point(3, 3);
             Substitutions_DGV.Name = "Substitutions_DGV";
             Substitutions_DGV.ReadOnly = true;
             Substitutions_DGV.RowTemplate.Height = 25;
+            Substitutions_DGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             Substitutions_DGV.Size = new Size(780, 385);
             Substitutions_DGV.TabIndex = 1;
+            Substitutions_DGV.CellDoubleClick += Substitutions_DGV_CellDoubleClick;
+            // 
+            // SubstitutionId
+            // 
+            SubstitutionId.HeaderText = "Id";
+            SubstitutionId.Name = "SubstitutionId";
+            SubstitutionId.ReadOnly = true;
+            SubstitutionId.Visible = false;
+            // 
+            // SubstitutionCol
+            // 
+            SubstitutionCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            SubstitutionCol.FillWeight = 15F;
+            SubstitutionCol.HeaderText = "Wypełnione";
+            SubstitutionCol.Name = "SubstitutionCol";
+            SubstitutionCol.ReadOnly = true;
+            // 
+            // DateSubstitution
+            // 
+            DateSubstitution.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            DateSubstitution.FillWeight = 15F;
+            DateSubstitution.HeaderText = "Data";
+            DateSubstitution.Name = "DateSubstitution";
+            DateSubstitution.ReadOnly = true;
             // 
             // WorkerNameSubstitutions
             // 
@@ -316,22 +342,6 @@
             WorkerSurnameSubstitutions.HeaderText = "Nazwisko";
             WorkerSurnameSubstitutions.Name = "WorkerSurnameSubstitutions";
             WorkerSurnameSubstitutions.ReadOnly = true;
-            // 
-            // FromDateSubstitutions
-            // 
-            FromDateSubstitutions.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            FromDateSubstitutions.FillWeight = 15F;
-            FromDateSubstitutions.HeaderText = "Od";
-            FromDateSubstitutions.Name = "FromDateSubstitutions";
-            FromDateSubstitutions.ReadOnly = true;
-            // 
-            // ToDateSubstitutions
-            // 
-            ToDateSubstitutions.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ToDateSubstitutions.FillWeight = 15F;
-            ToDateSubstitutions.HeaderText = "Do";
-            ToDateSubstitutions.Name = "ToDateSubstitutions";
-            ToDateSubstitutions.ReadOnly = true;
             // 
             // menuStrip1
             // 
@@ -387,10 +397,6 @@
         private DataGridView RequestHistory_DGV;
         private TabPage ManagerSubstitutions_TP;
         private DataGridView Substitutions_DGV;
-        private DataGridViewTextBoxColumn WorkerNameSubstitutions;
-        private DataGridViewTextBoxColumn WorkerSurnameSubstitutions;
-        private DataGridViewTextBoxColumn FromDateSubstitutions;
-        private DataGridViewTextBoxColumn ToDateSubstitutions;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem ManagerLogout_BTN;
         private DataGridViewTextBoxColumn WorkerName;
@@ -404,5 +410,10 @@
         private DataGridViewTextBoxColumn From;
         private DataGridViewTextBoxColumn To;
         private Panel panel2;
+        private DataGridViewTextBoxColumn SubstitutionId;
+        private DataGridViewTextBoxColumn SubstitutionCol;
+        private DataGridViewTextBoxColumn DateSubstitution;
+        private DataGridViewTextBoxColumn WorkerNameSubstitutions;
+        private DataGridViewTextBoxColumn WorkerSurnameSubstitutions;
     }
 }

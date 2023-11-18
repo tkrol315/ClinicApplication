@@ -20,5 +20,6 @@ namespace ClinicApp.Entities
         public virtual  List<Schedule> Schedules{ get; set; }
         public virtual List<DayOff> DaysOff { get; set; }
         public virtual List<Request> Requests { get; set; }
+        public virtual List<Substitution> Substitutions { get; set; }
     }
 }

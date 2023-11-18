@@ -24,6 +24,7 @@ namespace ClinicApp
             InitializeComponent();
             _serviceProvider = serviceProvider;
             _mediator = mediator;
+            MaximizeBox = false;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

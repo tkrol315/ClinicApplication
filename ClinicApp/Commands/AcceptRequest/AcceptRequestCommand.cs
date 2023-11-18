@@ -15,6 +15,6 @@ namespace ClinicApp.Commands.AcceptRequestCommand
             Request = request;
         }
 
-        public Request Request { get; init; }
+        public Request Request { get;}
     }
 }

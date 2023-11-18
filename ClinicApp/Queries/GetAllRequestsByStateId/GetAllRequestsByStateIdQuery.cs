@@ -9,7 +9,7 @@ namespace ClinicApp.Queries.GetAllRequestsByStateId
         {
             StateId = stateId;
         }
-        public int StateId { get; init; }
+        public int StateId { get;}
 
     }
 }

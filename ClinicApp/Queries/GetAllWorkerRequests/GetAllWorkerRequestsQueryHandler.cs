@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Queries.GetAllWorkerRequests
 {
-    public class GetAllWorkerRequestsQuaryHandler : IRequestHandler<GetAllWorkerRequestsQuary, List<Request>>
+    public class GetAllWorkerRequestsQueryHandler : IRequestHandler<GetAllWorkerRequestsQuery, List<Request>>
     {
         private readonly IRequestRepository _requestRepository;
 
-        public GetAllWorkerRequestsQuaryHandler(IRequestRepository requestRepository)
+        public GetAllWorkerRequestsQueryHandler(IRequestRepository requestRepository)
         {
             _requestRepository = requestRepository;
         }
 
-        public async Task<List<Request>> Handle(GetAllWorkerRequestsQuary request, CancellationToken cancellationToken)
+        public async Task<List<Request>> Handle(GetAllWorkerRequestsQuery request, CancellationToken cancellationToken)
         {
             var requests = await _requestRepository.GetAllRequestsForUserByUserId(request.UserId);
             return requests.ToList();
