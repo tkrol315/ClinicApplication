@@ -10,5 +10,6 @@ namespace ClinicApp.Repositories.Interfaces
         Task<IEnumerable<User>> GetUsersWithSchedulesByRoleId(int roleId);
         Task<User> GetUserWithSchedulesSubstitutionsAndDaysOffById(int id);
         Task<IEnumerable<User>> GetAllUsersWithRoles();
+        
     }
 }

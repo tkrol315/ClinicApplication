@@ -4,6 +4,7 @@ using ClinicApp.Commands.RejectRequest;
 using ClinicApp.Entities;
 using ClinicApp.Queries.GetAllRequestsByStateId;
 using ClinicApp.Queries.GetAllRequestsByStateIds;
+using ClinicApp.Queries.GetAllRequestsWithSubstitutionsByStateId;
 using ClinicApp.Queries.GetAllSubstitutions;
 using ClinicApp.Queries.GetUserSubstitutions;
 using ClinicApp.Services.LogoutService;
@@ -57,7 +58,7 @@ namespace ClinicApp.Forms.ManagerForms
         private async void LoadRequests()
         {
             RequestManager_DGV.Rows.Clear();
-            var query = new GetAllRequestsByStateIdQuery(3);
+            var query = new GetAllRequestsWithSubstitutionsByStateIdQuery(3);
             Requests = await _mediator.Send(query);
 
             foreach (var request in Requests)

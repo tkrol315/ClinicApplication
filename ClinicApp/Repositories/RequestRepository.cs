@@ -38,5 +38,16 @@ namespace ClinicApp.Repositories
                .ToListAsync();
             return requests;
         }
+
+        public async Task<IEnumerable<Request>> GetAllRequestsWithUserSubstitutionsAndDayOffTypeByStateId(int id)
+        {
+            var requests = await _dbContext.Requests
+               .Include(r => r.DayOffType)
+               .Include(r => r.User)
+               .Include(r => r.Substitutions)
+               .Where(r => r.RequestStateId == id)
+               .ToListAsync();
+            return requests;
+        }
     }
 }

@@ -37,10 +37,12 @@ namespace ClinicApp.Commands.AcceptRequestCommand
                         Date = schedule.Date,
                     };
                     user.DaysOff.Add(dayOff);
-                    request.Request.Substitution =  new Substitution()
+                    var substitution =  new Substitution()
                     {
                         Date = schedule.Date,
+                        
                     };
+                    request.Request.Substitutions.Add(substitution);
                     dayOffCounter++;
                 }
             }

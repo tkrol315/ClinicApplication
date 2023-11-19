@@ -1,4 +1,5 @@
-﻿using ClinicApp.Entities;
+﻿using Bogus;
+using ClinicApp.Entities;
 using ClinicApp.Seeders.Interfaces;
 using Microsoft.AspNetCore.Identity;
 
@@ -32,49 +33,49 @@ namespace ClinicApp.Seeders
               
                 new User()
                 {
-                    Name = "ReceptionistName",
-                    Surname = "ReceptionistSurname",
-                    Login = "Receptionist",
-                    PasswordHash = "",
+                    Name = "Receptionist",
+                    Surname = "Receptionist",
+                    Login = "receptionist",
+                    PasswordHash = "receptionist",
                     DaysOffPull = 26,
                     RoleId = 2,
                 },
                  new User()
                 {
-                    Name = "ManagerName",
-                    Surname = "ManagerSurname",
-                    Login = "Manager",
-                    PasswordHash = "",
+                    Name = "Manager",
+                    Surname = "Manager",
+                    Login = "manager",
+                    PasswordHash = "manager",
                     DaysOffPull = 26,
                     RoleId = 3,
                 },
                    new User()
                 {
-                    Name = "AdminName",
-                    Surname = "AdminSurname",
-                    Login = "Admin",
-                    PasswordHash = "",
+                    Name = "Admin",
+                    Surname = "Admin",
+                    Login = "admin",
+                    PasswordHash = "admin",
                     DaysOffPull = 26,
                     RoleId = 4,
                 }
             };
             foreach (var user in users)
             {
-                user.PasswordHash = _passwordHasher.HashPassword(user, "");
+                user.PasswordHash = _passwordHasher.HashPassword(user, user.PasswordHash);
             }
+            var workerGenerator = new Faker<User>()
+                .RuleFor(w => w.Name, f => f.Name.FirstName())
+                .RuleFor(w => w.Surname, f => f.Name.LastName())
+                .RuleFor(w => w.Login, f => f.Person.UserName);
 
             for(int i = 0; i < 100; i++)
             {
-                var worker = new User()
-                {
-                    Name = $"Name{i}",
-                    Surname = $"Surname{i}",
-                    Login = $"Worker{i}",
-                    DaysOffPull = 26,
-                    DaysOffOnDemandPull = 4,
-                    RoleId = 1,
-                };
-                worker.PasswordHash = _passwordHasher.HashPassword(worker,$"{i}");
+                var worker = workerGenerator.Generate();
+                worker.DaysOffPull = 26;
+                worker.DaysOffOnDemandPull = 4;
+                worker.RoleId = 1;
+                worker.PasswordHash = _passwordHasher.HashPassword(worker, "worker");
+               
                 users.Add(worker);
             }
             return users;

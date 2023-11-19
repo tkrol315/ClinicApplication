@@ -1,6 +1,7 @@
 ﻿using ClinicApp.Entities;
 using ClinicApp.Migrations;
 using ClinicApp.Seeders.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,23 +14,23 @@ namespace ClinicApp.Seeders
     public class SeederInit
     {
         private readonly IServiceProvider _serviceProvider;
-
-        public SeederInit(IServiceProvider serviceProvider)
+        private readonly ClinicDbContext _dbContext;
+        public SeederInit(IServiceProvider serviceProvider, ClinicDbContext dbContext)
         {
             _serviceProvider = serviceProvider;
+            _dbContext = dbContext;
         }
         public async Task Init()
         {
+            if (!_dbContext.Database.CanConnect())
+            {
+                await _dbContext.Database.MigrateAsync();
+            }
             await _serviceProvider.GetService<RoleSeeder>().Seed();
             await _serviceProvider.GetService<UserSeeder>().Seed();
             await _serviceProvider.GetService<DayOffTypeSeeder>().Seed();
             await _serviceProvider.GetService<ScheduleSeeder>().Seed();
             await _serviceProvider.GetService<RequestStateSeeder>().Seed();
-            //var list = _serviceProvider.GetServices<ISeeder>().ToList();
-            //foreach (var item in list)
-            //{
-            //    await item.Seed();
-            //}
 
         }
     }

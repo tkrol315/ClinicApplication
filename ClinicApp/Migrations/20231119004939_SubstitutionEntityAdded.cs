@@ -40,8 +40,7 @@ namespace ClinicApp.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Substitutions_RequestId",
                 table: "Substitutions",
-                column: "RequestId",
-                unique: true);
+                column: "RequestId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Substitutions_UserId",

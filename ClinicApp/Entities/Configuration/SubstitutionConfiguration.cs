@@ -13,7 +13,7 @@ namespace ClinicApp.Entities.Configuration
         public void Configure(EntityTypeBuilder<Substitution> builder)
         {
             builder.HasOne(s => s.User).WithMany(u => u.Substitutions).HasForeignKey(s => s.UserId);
-            builder.HasOne(s => s.Request).WithOne(r => r.Substitution).HasForeignKey<Substitution>(s => s.RequestId);
+            builder.HasOne(s => s.Request).WithMany(r => r.Substitutions).HasForeignKey(s => s.RequestId);
         }
     }
 }

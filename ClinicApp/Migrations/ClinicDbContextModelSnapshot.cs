@@ -207,8 +207,7 @@ namespace ClinicApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RequestId")
-                        .IsUnique();
+                    b.HasIndex("RequestId");
 
                     b.HasIndex("UserId");
 
@@ -341,8 +340,8 @@ namespace ClinicApp.Migrations
             modelBuilder.Entity("ClinicApp.Entities.Substitution", b =>
                 {
                     b.HasOne("ClinicApp.Entities.Request", "Request")
-                        .WithOne("Substitution")
-                        .HasForeignKey("ClinicApp.Entities.Substitution", "RequestId")
+                        .WithMany("Substitutions")
+                        .HasForeignKey("RequestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -409,8 +408,7 @@ namespace ClinicApp.Migrations
                 {
                     b.Navigation("Response");
 
-                    b.Navigation("Substitution")
-                        .IsRequired();
+                    b.Navigation("Substitutions");
                 });
 
             modelBuilder.Entity("ClinicApp.Entities.RequestState", b =>
