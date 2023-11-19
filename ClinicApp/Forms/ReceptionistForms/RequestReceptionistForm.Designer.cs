@@ -67,9 +67,10 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
             label1.Location = new Point(22, 13);
             label1.Name = "label1";
-            label1.Size = new Size(80, 15);
+            label1.Size = new Size(98, 20);
             label1.TabIndex = 2;
             label1.Text = "Treść wniosku";
             // 
@@ -103,6 +104,7 @@
             // 
             RequestDateFrom_CB.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             RequestDateFrom_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            RequestDateFrom_CB.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             RequestDateFrom_CB.FormattingEnabled = true;
             RequestDateFrom_CB.Location = new Point(46, 22);
             RequestDateFrom_CB.Name = "RequestDateFrom_CB";
@@ -114,6 +116,7 @@
             // 
             RequestDateTo_CB.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             RequestDateTo_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            RequestDateTo_CB.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             RequestDateTo_CB.FormattingEnabled = true;
             RequestDateTo_CB.Location = new Point(46, 58);
             RequestDateTo_CB.Name = "RequestDateTo_CB";
@@ -124,7 +127,8 @@
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.Location = new Point(16, 22);
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(17, 25);
             label2.Name = "label2";
             label2.Size = new Size(23, 15);
             label2.TabIndex = 7;
@@ -134,7 +138,8 @@
             // 
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label3.AutoSize = true;
-            label3.Location = new Point(17, 58);
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(17, 65);
             label3.Name = "label3";
             label3.Size = new Size(22, 15);
             label3.TabIndex = 8;
@@ -169,6 +174,7 @@
             DayOff_GB.Controls.Add(RequestDateTo_CB);
             DayOff_GB.Controls.Add(label2);
             DayOff_GB.Controls.Add(label3);
+            DayOff_GB.Font = new Font("Segoe UI", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
             DayOff_GB.Location = new Point(619, 36);
             DayOff_GB.Name = "DayOff_GB";
             DayOff_GB.Size = new Size(200, 100);

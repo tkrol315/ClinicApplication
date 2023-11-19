@@ -46,18 +46,18 @@ namespace ClinicApp.Forms.ReceptionistForms
             var selectedScheduleDate = GetDateFromComboBox(RequestDateFrom_CB);
 
             schedules.RemoveAll(s => s.Date < selectedScheduleDate.Date);
-            
+
             foreach (var s in schedules)
             {
                 if (request.DayOffTypeId == 1 && RequestDateTo_CB.Items.Count < request.User.DaysOffPull)
                 {
                     RequestDateTo_CB.Items.Add(s.ToString());
                 }
-                else if(request.DayOffTypeId == 2)
+                else if (request.DayOffTypeId == 2)
                 {
                     RequestDateTo_CB.Items.Add(s.ToString());
                 }
-                else if(request.DayOffTypeId == 3 && RequestDateTo_CB.Items.Count < request.User.DaysOffOnDemandPull)
+                else if (request.DayOffTypeId == 3 && RequestDateTo_CB.Items.Count < request.User.DaysOffOnDemandPull)
                 {
                     RequestDateTo_CB.Items.Add(s.ToString());
                 }

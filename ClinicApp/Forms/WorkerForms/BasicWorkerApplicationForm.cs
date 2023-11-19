@@ -1,14 +1,17 @@
 ﻿using ClinicApp.Commands.CreateRequest;
 using ClinicApp.Queries.GetAllWorkerRequests;
 using ClinicApp.Queries.GetRejectionMessageByRequestId;
+using ClinicApp.Queries.GetUserSubstitutions;
 using ClinicApp.Repositories.Interfaces;
 using ClinicApp.Services.LogoutService;
 using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ClinicApp.Forms
 {
     public partial class BasicWorkerApplicationForm : Form
     {
+        private readonly IServiceProvider _serviceProvider;
         private readonly IDayOffTypeRepository _dayOffTypeRepository;
         private readonly IMediator _mediator;
         private readonly ILogoutService _logoutService;
@@ -16,13 +19,22 @@ namespace ClinicApp.Forms
         public BasicWorkerApplicationForm(
             IDayOffTypeRepository dayOffTypeRepository,
             IMediator mediator,
-            ILogoutService logoutService)
+            ILogoutService logoutService,
+            IServiceProvider serviceProvider)
         {
             _dayOffTypeRepository = dayOffTypeRepository;
             _mediator = mediator;
+            _logoutService = logoutService;
+            _serviceProvider = serviceProvider;
             InitializeComponent();
             LoadAsyncData();
-            _logoutService = logoutService;
+            SetRemainingDaysOff();
+         
+        }
+        private void SetRemainingDaysOff()
+        {
+            LeftDaysOffPull_L.Text = UserSession.CurrentUser.DaysOffPull.ToString();
+            LeftDaysOffOnDemandPull_L.Text = UserSession.CurrentUser.DaysOffOnDemandPull.ToString();
         }
 
         private async void LoadAsyncData()
@@ -102,6 +114,16 @@ namespace ClinicApp.Forms
         private void LogoutWorker_BTN_Click(object sender, EventArgs e)
         {
             _logoutService.LogoutOut(sender, e, this);
+        }
+
+        private async void WorkerSchedule_BTN_Click(object sender, EventArgs e)
+        {
+            var scheduleForm = _serviceProvider.GetRequiredService<WorkScheduleForm>();
+            scheduleForm.Text = $"Grafik - {UserSession.CurrentUser.Name} {UserSession.CurrentUser.Surname}";
+            var query = new GetUserWithSchedulesSubstitutionsAndDaysOffQuery(UserSession.CurrentUser.Id);
+            scheduleForm.User = await _mediator.Send(query);
+            scheduleForm.FillDGV();
+            scheduleForm.ShowDialog();
         }
     }
 }

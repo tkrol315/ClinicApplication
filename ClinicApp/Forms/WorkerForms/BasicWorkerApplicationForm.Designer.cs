@@ -31,6 +31,7 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             BasicWorkerTabControl = new TabControl();
             BasicWorkerSendRequest_TP = new TabPage();
+            WorkerSchedule_BTN = new Button();
             SendRequest_BTN = new Button();
             label2 = new Label();
             BasicWorkerDayoffType_CB = new ComboBox();
@@ -43,12 +44,18 @@
             RequestStatus = new DataGridViewTextBoxColumn();
             menuStrip1 = new MenuStrip();
             LogoutWorker_BTN = new ToolStripMenuItem();
+            RemainingDaysOff = new GroupBox();
+            label3 = new Label();
+            label4 = new Label();
+            LeftDaysOffPull_L = new Label();
+            LeftDaysOffOnDemandPull_L = new Label();
             tableLayoutPanel1.SuspendLayout();
             BasicWorkerTabControl.SuspendLayout();
             BasicWorkerSendRequest_TP.SuspendLayout();
             BasicWorkerNotifications_TP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)WorkerNotificatin_DGV).BeginInit();
             menuStrip1.SuspendLayout();
+            RemainingDaysOff.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -79,6 +86,8 @@
             // 
             // BasicWorkerSendRequest_TP
             // 
+            BasicWorkerSendRequest_TP.Controls.Add(RemainingDaysOff);
+            BasicWorkerSendRequest_TP.Controls.Add(WorkerSchedule_BTN);
             BasicWorkerSendRequest_TP.Controls.Add(SendRequest_BTN);
             BasicWorkerSendRequest_TP.Controls.Add(label2);
             BasicWorkerSendRequest_TP.Controls.Add(BasicWorkerDayoffType_CB);
@@ -91,6 +100,17 @@
             BasicWorkerSendRequest_TP.TabIndex = 0;
             BasicWorkerSendRequest_TP.Text = "Wyślij wniosek";
             BasicWorkerSendRequest_TP.UseVisualStyleBackColor = true;
+            // 
+            // WorkerSchedule_BTN
+            // 
+            WorkerSchedule_BTN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            WorkerSchedule_BTN.Location = new Point(707, 306);
+            WorkerSchedule_BTN.Name = "WorkerSchedule_BTN";
+            WorkerSchedule_BTN.Size = new Size(109, 35);
+            WorkerSchedule_BTN.TabIndex = 5;
+            WorkerSchedule_BTN.Text = "Grafik";
+            WorkerSchedule_BTN.UseVisualStyleBackColor = true;
+            WorkerSchedule_BTN.Click += WorkerSchedule_BTN_Click;
             // 
             // SendRequest_BTN
             // 
@@ -207,6 +227,56 @@
             LogoutWorker_BTN.Text = "Wyloguj";
             LogoutWorker_BTN.Click += LogoutWorker_BTN_Click;
             // 
+            // RemainingDaysOff
+            // 
+            RemainingDaysOff.Controls.Add(LeftDaysOffOnDemandPull_L);
+            RemainingDaysOff.Controls.Add(LeftDaysOffPull_L);
+            RemainingDaysOff.Controls.Add(label4);
+            RemainingDaysOff.Controls.Add(label3);
+            RemainingDaysOff.Font = new Font("Segoe UI", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
+            RemainingDaysOff.Location = new Point(661, 74);
+            RemainingDaysOff.Name = "RemainingDaysOff";
+            RemainingDaysOff.Size = new Size(145, 92);
+            RemainingDaysOff.TabIndex = 6;
+            RemainingDaysOff.TabStop = false;
+            RemainingDaysOff.Text = "Pozostało";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(6, 28);
+            label3.Name = "label3";
+            label3.Size = new Size(42, 15);
+            label3.TabIndex = 0;
+            label3.Text = "Urlop: ";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(6, 56);
+            label4.Name = "label4";
+            label4.Size = new Size(95, 15);
+            label4.TabIndex = 1;
+            label4.Text = "Urlop na żądanie";
+            // 
+            // LeftDaysOffPull_L
+            // 
+            LeftDaysOffPull_L.AutoSize = true;
+            LeftDaysOffPull_L.Location = new Point(46, 28);
+            LeftDaysOffPull_L.Name = "LeftDaysOffPull_L";
+            LeftDaysOffPull_L.Size = new Size(0, 20);
+            LeftDaysOffPull_L.TabIndex = 2;
+            // 
+            // LeftDaysOffOnDemandPull_L
+            // 
+            LeftDaysOffOnDemandPull_L.AutoSize = true;
+            LeftDaysOffOnDemandPull_L.Location = new Point(107, 56);
+            LeftDaysOffOnDemandPull_L.Name = "LeftDaysOffOnDemandPull_L";
+            LeftDaysOffOnDemandPull_L.Size = new Size(0, 20);
+            LeftDaysOffOnDemandPull_L.TabIndex = 3;
+            // 
             // BasicWorkerApplicationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -228,6 +298,8 @@
             ((System.ComponentModel.ISupportInitialize)WorkerNotificatin_DGV).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            RemainingDaysOff.ResumeLayout(false);
+            RemainingDaysOff.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -248,5 +320,11 @@
         private DataGridViewTextBoxColumn RequestStatus;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem LogoutWorker_BTN;
+        private Button WorkerSchedule_BTN;
+        private GroupBox RemainingDaysOff;
+        private Label label3;
+        private Label LeftDaysOffOnDemandPull_L;
+        private Label LeftDaysOffPull_L;
+        private Label label4;
     }
 }
