@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RequestReceptionistForm));
             RequestContent_RTB = new RichTextBox();
             RequestReply_RTB = new RichTextBox();
             label1 = new Label();
@@ -200,6 +201,7 @@
             Controls.Add(label1);
             Controls.Add(RequestReply_RTB);
             Controls.Add(RequestContent_RTB);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximumSize = new Size(1122, 641);
             MinimumSize = new Size(847, 525);
             Name = "RequestReceptionistForm";

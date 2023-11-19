@@ -29,7 +29,7 @@ namespace ClinicApp.Forms
             InitializeComponent();
             LoadAsyncData();
             SetRemainingDaysOff();
-         
+
         }
         private void SetRemainingDaysOff()
         {
@@ -66,7 +66,7 @@ namespace ClinicApp.Forms
             }
             catch (Exception)
             {
-                MessageBox.Show("Nie udalo sie wyslac wniosku");
+                MessageBox.Show("Nie udało sie wysłać wniosku");
             }
 
 

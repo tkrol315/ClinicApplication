@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceptionistApplicationForm));
             Request_DGV = new DataGridView();
             RequestNumber = new DataGridViewTextBoxColumn();
             WorkerName = new DataGridViewTextBoxColumn();
@@ -114,6 +115,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(Request_DGV);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "ReceptionistApplicationForm";
             StartPosition = FormStartPosition.CenterScreen;

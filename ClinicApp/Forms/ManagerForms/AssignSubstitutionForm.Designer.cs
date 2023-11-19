@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AssignSubstitutionForm));
             AssignWorker_CB = new ComboBox();
             AssignWorker_BTN = new Button();
             SuspendLayout();
@@ -58,6 +59,7 @@
             ClientSize = new Size(192, 129);
             Controls.Add(AssignWorker_BTN);
             Controls.Add(AssignWorker_CB);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximumSize = new Size(208, 168);
             MinimumSize = new Size(208, 168);
             Name = "AssignSubstitutionForm";

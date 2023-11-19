@@ -1,12 +1,9 @@
 using ClinicApp.Commands.LoginUser;
-using ClinicApp.Entities;
 using ClinicApp.Enums;
 using ClinicApp.Forms;
 using ClinicApp.Forms.AdministratorForms;
 using ClinicApp.Forms.ManagerForms;
-using ClinicApp.Repositories.Interfaces;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ClinicApp
@@ -68,7 +65,7 @@ namespace ClinicApp
             }
             catch (Exception)
             {
-                MessageBox.Show("Nieprawidlowy login lub haslo");
+                MessageBox.Show("Nieprawid³owy login lub has³o");
             }
         }
     }

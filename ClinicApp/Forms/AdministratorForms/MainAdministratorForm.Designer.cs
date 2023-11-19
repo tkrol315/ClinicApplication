@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainAdministratorForm));
             tableLayoutPanel1 = new TableLayoutPanel();
             AdministratorPanel_DGV = new DataGridView();
-            menuStrip1 = new MenuStrip();
-            LogoutAdmin_BTN = new ToolStripMenuItem();
             Id = new DataGridViewTextBoxColumn();
             WorkerLogin = new DataGridViewTextBoxColumn();
             WorkerName = new DataGridViewTextBoxColumn();
             WorkerSurname = new DataGridViewTextBoxColumn();
             DaysoffAmount = new DataGridViewTextBoxColumn();
             WorkerRole = new DataGridViewTextBoxColumn();
+            menuStrip1 = new MenuStrip();
+            LogoutAdmin_BTN = new ToolStripMenuItem();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)AdministratorPanel_DGV).BeginInit();
             menuStrip1.SuspendLayout();
@@ -74,22 +75,6 @@
             AdministratorPanel_DGV.Size = new Size(794, 419);
             AdministratorPanel_DGV.TabIndex = 1;
             AdministratorPanel_DGV.CellDoubleClick += AdministratorPanel_DGV_CellDoubleClick;
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { LogoutAdmin_BTN });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
-            menuStrip1.TabIndex = 0;
-            menuStrip1.Text = "menuStrip1";
-            // 
-            // LogoutAdmin_BTN
-            // 
-            LogoutAdmin_BTN.Name = "LogoutAdmin_BTN";
-            LogoutAdmin_BTN.Size = new Size(63, 20);
-            LogoutAdmin_BTN.Text = "Wyloguj";
-            LogoutAdmin_BTN.Click += AdminLogout_BTN_Click;
             // 
             // Id
             // 
@@ -144,12 +129,29 @@
             WorkerRole.ReadOnly = true;
             WorkerRole.Resizable = DataGridViewTriState.False;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { LogoutAdmin_BTN });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.TabIndex = 0;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // LogoutAdmin_BTN
+            // 
+            LogoutAdmin_BTN.Name = "LogoutAdmin_BTN";
+            LogoutAdmin_BTN.Size = new Size(63, 20);
+            LogoutAdmin_BTN.Text = "Wyloguj";
+            LogoutAdmin_BTN.Click += AdminLogout_BTN_Click;
+            // 
             // MainAdministratorForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(tableLayoutPanel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "MainAdministratorForm";
             StartPosition = FormStartPosition.CenterScreen;

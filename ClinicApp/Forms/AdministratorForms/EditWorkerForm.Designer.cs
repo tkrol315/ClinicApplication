@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditWorkerForm));
             label1 = new Label();
             Name_TB = new TextBox();
             Surname_TB = new TextBox();
@@ -130,6 +131,7 @@
             Controls.Add(label2);
             Controls.Add(Name_TB);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximumSize = new Size(353, 321);
             Name = "EditWorkerForm";
             StartPosition = FormStartPosition.CenterScreen;

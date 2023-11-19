@@ -10,9 +10,9 @@ namespace ClinicApp.Forms
         public WorkScheduleForm()
         {
             InitializeComponent();
-          
+
         }
-     
+
         public void FillDGV()
         {
             int counter = 0;
@@ -50,8 +50,10 @@ namespace ClinicApp.Forms
                     var index = WorkSchedule_DGV.Rows.Add(data);
                     WorkSchedule_DGV.Rows[index].DefaultCellStyle.BackColor = isSubstitution ? Color.Yellow : Color.SpringGreen;
                 }
-              
+
             }
         }
+
+
     }
 }

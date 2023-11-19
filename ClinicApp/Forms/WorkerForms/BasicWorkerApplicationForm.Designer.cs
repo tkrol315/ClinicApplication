@@ -28,9 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BasicWorkerApplicationForm));
             tableLayoutPanel1 = new TableLayoutPanel();
             BasicWorkerTabControl = new TabControl();
             BasicWorkerSendRequest_TP = new TabPage();
+            RemainingDaysOff = new GroupBox();
+            LeftDaysOffOnDemandPull_L = new Label();
+            LeftDaysOffPull_L = new Label();
+            label4 = new Label();
+            label3 = new Label();
             WorkerSchedule_BTN = new Button();
             SendRequest_BTN = new Button();
             label2 = new Label();
@@ -44,18 +50,13 @@
             RequestStatus = new DataGridViewTextBoxColumn();
             menuStrip1 = new MenuStrip();
             LogoutWorker_BTN = new ToolStripMenuItem();
-            RemainingDaysOff = new GroupBox();
-            label3 = new Label();
-            label4 = new Label();
-            LeftDaysOffPull_L = new Label();
-            LeftDaysOffOnDemandPull_L = new Label();
             tableLayoutPanel1.SuspendLayout();
             BasicWorkerTabControl.SuspendLayout();
             BasicWorkerSendRequest_TP.SuspendLayout();
+            RemainingDaysOff.SuspendLayout();
             BasicWorkerNotifications_TP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)WorkerNotificatin_DGV).BeginInit();
             menuStrip1.SuspendLayout();
-            RemainingDaysOff.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -100,6 +101,56 @@
             BasicWorkerSendRequest_TP.TabIndex = 0;
             BasicWorkerSendRequest_TP.Text = "Wyślij wniosek";
             BasicWorkerSendRequest_TP.UseVisualStyleBackColor = true;
+            // 
+            // RemainingDaysOff
+            // 
+            RemainingDaysOff.Controls.Add(LeftDaysOffOnDemandPull_L);
+            RemainingDaysOff.Controls.Add(LeftDaysOffPull_L);
+            RemainingDaysOff.Controls.Add(label4);
+            RemainingDaysOff.Controls.Add(label3);
+            RemainingDaysOff.Font = new Font("Segoe UI", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
+            RemainingDaysOff.Location = new Point(661, 74);
+            RemainingDaysOff.Name = "RemainingDaysOff";
+            RemainingDaysOff.Size = new Size(145, 92);
+            RemainingDaysOff.TabIndex = 6;
+            RemainingDaysOff.TabStop = false;
+            RemainingDaysOff.Text = "Pozostało";
+            // 
+            // LeftDaysOffOnDemandPull_L
+            // 
+            LeftDaysOffOnDemandPull_L.AutoSize = true;
+            LeftDaysOffOnDemandPull_L.Location = new Point(107, 56);
+            LeftDaysOffOnDemandPull_L.Name = "LeftDaysOffOnDemandPull_L";
+            LeftDaysOffOnDemandPull_L.Size = new Size(0, 20);
+            LeftDaysOffOnDemandPull_L.TabIndex = 3;
+            // 
+            // LeftDaysOffPull_L
+            // 
+            LeftDaysOffPull_L.AutoSize = true;
+            LeftDaysOffPull_L.Location = new Point(46, 28);
+            LeftDaysOffPull_L.Name = "LeftDaysOffPull_L";
+            LeftDaysOffPull_L.Size = new Size(0, 20);
+            LeftDaysOffPull_L.TabIndex = 2;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(6, 56);
+            label4.Name = "label4";
+            label4.Size = new Size(95, 15);
+            label4.TabIndex = 1;
+            label4.Text = "Urlop na żądanie";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(6, 28);
+            label3.Name = "label3";
+            label3.Size = new Size(42, 15);
+            label3.TabIndex = 0;
+            label3.Text = "Urlop: ";
             // 
             // WorkerSchedule_BTN
             // 
@@ -186,6 +237,7 @@
             WorkerNotificatin_DGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             WorkerNotificatin_DGV.Size = new Size(816, 384);
             WorkerNotificatin_DGV.TabIndex = 0;
+            WorkerNotificatin_DGV.CellDoubleClick += PreviewRejectionMessage_CellMouseDoubleClick;
             // 
             // RequestNumber
             // 
@@ -227,62 +279,13 @@
             LogoutWorker_BTN.Text = "Wyloguj";
             LogoutWorker_BTN.Click += LogoutWorker_BTN_Click;
             // 
-            // RemainingDaysOff
-            // 
-            RemainingDaysOff.Controls.Add(LeftDaysOffOnDemandPull_L);
-            RemainingDaysOff.Controls.Add(LeftDaysOffPull_L);
-            RemainingDaysOff.Controls.Add(label4);
-            RemainingDaysOff.Controls.Add(label3);
-            RemainingDaysOff.Font = new Font("Segoe UI", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            RemainingDaysOff.Location = new Point(661, 74);
-            RemainingDaysOff.Name = "RemainingDaysOff";
-            RemainingDaysOff.Size = new Size(145, 92);
-            RemainingDaysOff.TabIndex = 6;
-            RemainingDaysOff.TabStop = false;
-            RemainingDaysOff.Text = "Pozostało";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(6, 28);
-            label3.Name = "label3";
-            label3.Size = new Size(42, 15);
-            label3.TabIndex = 0;
-            label3.Text = "Urlop: ";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(6, 56);
-            label4.Name = "label4";
-            label4.Size = new Size(95, 15);
-            label4.TabIndex = 1;
-            label4.Text = "Urlop na żądanie";
-            // 
-            // LeftDaysOffPull_L
-            // 
-            LeftDaysOffPull_L.AutoSize = true;
-            LeftDaysOffPull_L.Location = new Point(46, 28);
-            LeftDaysOffPull_L.Name = "LeftDaysOffPull_L";
-            LeftDaysOffPull_L.Size = new Size(0, 20);
-            LeftDaysOffPull_L.TabIndex = 2;
-            // 
-            // LeftDaysOffOnDemandPull_L
-            // 
-            LeftDaysOffOnDemandPull_L.AutoSize = true;
-            LeftDaysOffOnDemandPull_L.Location = new Point(107, 56);
-            LeftDaysOffOnDemandPull_L.Name = "LeftDaysOffOnDemandPull_L";
-            LeftDaysOffOnDemandPull_L.Size = new Size(0, 20);
-            LeftDaysOffOnDemandPull_L.TabIndex = 3;
-            // 
             // BasicWorkerApplicationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(836, 449);
             Controls.Add(tableLayoutPanel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             MaximumSize = new Size(991, 624);
             MinimumSize = new Size(778, 472);
@@ -294,12 +297,12 @@
             BasicWorkerTabControl.ResumeLayout(false);
             BasicWorkerSendRequest_TP.ResumeLayout(false);
             BasicWorkerSendRequest_TP.PerformLayout();
+            RemainingDaysOff.ResumeLayout(false);
+            RemainingDaysOff.PerformLayout();
             BasicWorkerNotifications_TP.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)WorkerNotificatin_DGV).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            RemainingDaysOff.ResumeLayout(false);
-            RemainingDaysOff.PerformLayout();
             ResumeLayout(false);
         }
 

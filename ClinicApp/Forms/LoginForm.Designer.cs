@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             tableLayoutPanel1 = new TableLayoutPanel();
             Password_TB = new TextBox();
             label2 = new Label();
@@ -144,6 +145,7 @@
             Controls.Add(label3);
             Controls.Add(Login_BTN);
             Controls.Add(tableLayoutPanel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximumSize = new Size(355, 222);
             MinimumSize = new Size(355, 222);
             Name = "LoginForm";

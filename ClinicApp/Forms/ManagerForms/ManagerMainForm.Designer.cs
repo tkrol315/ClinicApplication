@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagerMainForm));
             Logout_BTN = new ContextMenuStrip(components);
             tableLayoutPanel1 = new TableLayoutPanel();
             ManagerTabControl = new TabControl();
@@ -44,6 +45,11 @@
             C = new Button();
             ManagerHistory_TP = new TabPage();
             RequestHistory_DGV = new DataGridView();
+            WorkerName = new DataGridViewTextBoxColumn();
+            WorkerSurname = new DataGridViewTextBoxColumn();
+            FromDateHistory = new DataGridViewTextBoxColumn();
+            ToDateHistory = new DataGridViewTextBoxColumn();
+            DayOffType = new DataGridViewTextBoxColumn();
             ManagerSubstitutions_TP = new TabPage();
             Substitutions_DGV = new DataGridView();
             SubstitutionId = new DataGridViewTextBoxColumn();
@@ -53,11 +59,6 @@
             WorkerSurnameSubstitutions = new DataGridViewTextBoxColumn();
             menuStrip1 = new MenuStrip();
             ManagerLogout_BTN = new ToolStripMenuItem();
-            WorkerName = new DataGridViewTextBoxColumn();
-            WorkerSurname = new DataGridViewTextBoxColumn();
-            FromDateHistory = new DataGridViewTextBoxColumn();
-            ToDateHistory = new DataGridViewTextBoxColumn();
-            DayOffType = new DataGridViewTextBoxColumn();
             tableLayoutPanel1.SuspendLayout();
             ManagerTabControl.SuspendLayout();
             RequestManager_TP.SuspendLayout();
@@ -237,6 +238,46 @@
             RequestHistory_DGV.Size = new Size(780, 385);
             RequestHistory_DGV.TabIndex = 0;
             // 
+            // WorkerName
+            // 
+            WorkerName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            WorkerName.FillWeight = 35F;
+            WorkerName.HeaderText = "Imię";
+            WorkerName.Name = "WorkerName";
+            WorkerName.ReadOnly = true;
+            // 
+            // WorkerSurname
+            // 
+            WorkerSurname.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            WorkerSurname.FillWeight = 35F;
+            WorkerSurname.HeaderText = "Nazwisko";
+            WorkerSurname.Name = "WorkerSurname";
+            WorkerSurname.ReadOnly = true;
+            // 
+            // FromDateHistory
+            // 
+            FromDateHistory.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            FromDateHistory.FillWeight = 15F;
+            FromDateHistory.HeaderText = "Od";
+            FromDateHistory.Name = "FromDateHistory";
+            FromDateHistory.ReadOnly = true;
+            // 
+            // ToDateHistory
+            // 
+            ToDateHistory.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ToDateHistory.FillWeight = 15F;
+            ToDateHistory.HeaderText = "Do";
+            ToDateHistory.Name = "ToDateHistory";
+            ToDateHistory.ReadOnly = true;
+            // 
+            // DayOffType
+            // 
+            DayOffType.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            DayOffType.FillWeight = 25F;
+            DayOffType.HeaderText = "Typ wniosku";
+            DayOffType.Name = "DayOffType";
+            DayOffType.ReadOnly = true;
+            // 
             // ManagerSubstitutions_TP
             // 
             ManagerSubstitutions_TP.Controls.Add(Substitutions_DGV);
@@ -319,52 +360,13 @@
             ManagerLogout_BTN.Text = "Wyloguj";
             ManagerLogout_BTN.Click += ManagerLogout_BTN_Click;
             // 
-            // WorkerName
-            // 
-            WorkerName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            WorkerName.FillWeight = 35F;
-            WorkerName.HeaderText = "Imię";
-            WorkerName.Name = "WorkerName";
-            WorkerName.ReadOnly = true;
-            // 
-            // WorkerSurname
-            // 
-            WorkerSurname.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            WorkerSurname.FillWeight = 35F;
-            WorkerSurname.HeaderText = "Nazwisko";
-            WorkerSurname.Name = "WorkerSurname";
-            WorkerSurname.ReadOnly = true;
-            // 
-            // FromDateHistory
-            // 
-            FromDateHistory.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            FromDateHistory.FillWeight = 15F;
-            FromDateHistory.HeaderText = "Od";
-            FromDateHistory.Name = "FromDateHistory";
-            FromDateHistory.ReadOnly = true;
-            // 
-            // ToDateHistory
-            // 
-            ToDateHistory.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ToDateHistory.FillWeight = 15F;
-            ToDateHistory.HeaderText = "Do";
-            ToDateHistory.Name = "ToDateHistory";
-            ToDateHistory.ReadOnly = true;
-            // 
-            // DayOffType
-            // 
-            DayOffType.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            DayOffType.FillWeight = 25F;
-            DayOffType.HeaderText = "Typ wniosku";
-            DayOffType.Name = "DayOffType";
-            DayOffType.ReadOnly = true;
-            // 
             // ManagerMainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(tableLayoutPanel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "ManagerMainForm";
             StartPosition = FormStartPosition.CenterScreen;
