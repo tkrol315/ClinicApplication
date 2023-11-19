@@ -34,14 +34,6 @@ namespace ClinicApp.Forms.AdministratorForms
 
         private async void EditWorker_BTN_Click(object sender, EventArgs e)
         {
-            if (Login_TB.Text == string.Empty ||
-                Name_TB.Text == string.Empty ||
-                Surname_TB.Text == string.Empty ||
-                DaysOff_TB.Text == string.Empty)
-            {
-                MessageBox.Show("Wszystkie pola muszą pozostać uzupełnione");
-                return;
-            }
             try
             {
                 var command = new AcceptUserDetailsCommand(
@@ -49,7 +41,7 @@ namespace ClinicApp.Forms.AdministratorForms
                       Login_TB.Text,
                       Name_TB.Text,
                       Surname_TB.Text,
-                      int.Parse(DaysOff_TB.Text)
+                      DaysOff_TB.Text
                 );
                 await _mediator.Send(command);
                 MessageBox.Show($"Dane użytkownika: {CurrentUser.Login}, zostały zmienione");

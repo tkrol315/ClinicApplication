@@ -10,7 +10,7 @@ namespace ClinicApp.Commands.AcceptUserDetails
 {
     public record AcceptUserDetailsCommand : IRequest<bool>
     {
-        public AcceptUserDetailsCommand(User user, string login, string name,string surname, int daysOffPull)
+        public AcceptUserDetailsCommand(User user, string login, string name,string surname, string daysOffPull)
         {
             User = user;  
             Login = login;
@@ -23,7 +23,7 @@ namespace ClinicApp.Commands.AcceptUserDetails
         public string Login { get; }
         public string Name{ get; }
         public string Surname { get; }
-        public int DaysOffPull{ get; }
+        public string DaysOffPull{ get; }
 
     }
 }
