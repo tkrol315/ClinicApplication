@@ -8,15 +8,6 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Commands.RejectRequest
 {
-    public record RejectRequestCommand : IRequest<bool>, IManagerChoiceCommand
-    {
-       
-        public RejectRequestCommand(Request request)
-        {
-            Request = request;
-        }
-
-        public Request Request { get; }
-
-    }
+    public record RejectRequestCommand(Request Request) : IRequest<bool>, IManagerChoiceCommand;
+  
 }

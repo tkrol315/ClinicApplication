@@ -8,13 +8,6 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Commands.AcceptRequestCommand
 {
-    public record AcceptRequestCommand : IRequest<bool>, IManagerChoiceCommand
-    {
-        public AcceptRequestCommand(Request request)
-        {
-            Request = request;
-        }
-
-        public Request Request { get;}
-    }
+    public record AcceptRequestCommand(Request Request) : IRequest<bool>, IManagerChoiceCommand;
+   
 }

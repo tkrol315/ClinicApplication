@@ -7,12 +7,6 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Queries.GetRejectionMessageByRequestId
 {
-    public record GetRejectionMessageByRequestIdQuery : IRequest<string>
-    {
-        public GetRejectionMessageByRequestIdQuery(int requestId)
-        {
-            RequestId = requestId;
-        }
-        public int RequestId { get;}
-    }
+    public record GetRejectionMessageByRequestIdQuery(int RequestId) : IRequest<string>;
+  
 }

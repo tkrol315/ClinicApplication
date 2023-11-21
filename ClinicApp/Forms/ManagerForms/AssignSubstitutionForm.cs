@@ -19,7 +19,7 @@ namespace ClinicApp.Forms.ManagerForms
 
         public async Task LoadAvailableWorkers()
         {
-            var query = new GetWorkersAvailableForSubstituionQuery(SubstitutionId);
+            var query = new GetWorkersAvailableForSubstitutionQuery(SubstitutionId);
             var availableWorkers = await _mediator.Send(query);
             var dtoList = new List<AvailableWorkerDto>();
             foreach (var worker in availableWorkers)

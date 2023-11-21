@@ -8,22 +8,6 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Commands.AcceptUserDetails
 {
-    public record AcceptUserDetailsCommand : IRequest<bool>
-    {
-        public AcceptUserDetailsCommand(User user, string login, string name,string surname, string daysOffPull)
-        {
-            User = user;  
-            Login = login;
-            Name = name;
-            Surname = surname;
-            DaysOffPull = daysOffPull;
-        }
-
-        public User User { get; }
-        public string Login { get; }
-        public string Name{ get; }
-        public string Surname { get; }
-        public string DaysOffPull{ get; }
-
-    }
+    public record AcceptUserDetailsCommand(User User, string Login, string Name, string Surname, string DaysOffPull) : IRequest<bool>;
+    
 }

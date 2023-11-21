@@ -3,15 +3,6 @@ using MediatR;
 
 namespace ClinicApp.Commands.SendRejectReceptionistRequest
 {
-    public record SendRejectReceptionistRequestCommand : IRequest<bool>
-    {
-        public SendRejectReceptionistRequestCommand(string message, Request request)
-        {
-            Message = message;
-            Request = request;
-        }
-
-        public string Message { get; }
-        public Request Request { get; }
-    }
+    public record SendRejectReceptionistRequestCommand(string Message, Request Request) : IRequest<bool>;
+  
 }

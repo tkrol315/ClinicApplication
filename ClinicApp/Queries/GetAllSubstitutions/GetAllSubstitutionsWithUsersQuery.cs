@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Queries.GetAllSubstitutions
 {
-    public record GetAllSubstitutionsWithUsersQuery : IRequest<List<Substitution>>
-    {
-        
-    }
+    public record GetAllSubstitutionsWithUsersQuery : IRequest<List<Substitution>>;
+    
 }

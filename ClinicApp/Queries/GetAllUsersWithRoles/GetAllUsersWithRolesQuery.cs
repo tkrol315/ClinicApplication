@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Queries.GetAllUsers
 {
-    public record GetAllUsersWithRolesQuery : IRequest<List<User>>
-    {
-    }
+    public record GetAllUsersWithRolesQuery : IRequest<List<User>>;
+   
 }

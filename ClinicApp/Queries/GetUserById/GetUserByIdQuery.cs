@@ -8,12 +8,6 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Queries.GetUserById
 {
-    public record GetUserByIdQuery : IRequest<User>
-    {
-        public GetUserByIdQuery(int userId)
-        {
-            UserId = userId;    
-        }
-        public int UserId { get; }
-    }
+    public record GetUserByIdQuery(int UserId) : IRequest<User>;
+   
 }

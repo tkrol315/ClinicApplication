@@ -8,13 +8,6 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Queries.GetAllRequestsWithSubstitutionsByStateId
 {
-    public record GetAllRequestsWithSubstitutionsByStateIdQuery : IRequest<List<Request>>
-    {
-        public GetAllRequestsWithSubstitutionsByStateIdQuery(int stateId)
-        {
-            StateId = stateId;
-        }
-        public int StateId { get; }
-
-    }
+    public record GetAllRequestsWithSubstitutionsByStateIdQuery(int StateId) : IRequest<List<Request>>;
+  
 }

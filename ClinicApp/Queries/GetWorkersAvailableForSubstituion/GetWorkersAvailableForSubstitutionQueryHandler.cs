@@ -11,18 +11,18 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.Queries.GetWorkersAvailableForSubstituion
 {
-    public class GetWorkersAvailableForSubstituionQueryHandler : IRequestHandler<GetWorkersAvailableForSubstituionQuery, List<User>>
+    public class GetWorkersAvailableForSubstitutionQueryHandler : IRequestHandler<GetWorkersAvailableForSubstitutionQuery, List<User>>
     {
         private readonly ISubstitutionRepository _substitutionRepository;
         private readonly IUserRepository _userRepository;
-        public GetWorkersAvailableForSubstituionQueryHandler(
+        public GetWorkersAvailableForSubstitutionQueryHandler(
             ISubstitutionRepository substitutionRepository,
             IUserRepository userRepository)
         {
             _substitutionRepository = substitutionRepository;
             _userRepository = userRepository;
         }
-        public async Task<List<User>> Handle(GetWorkersAvailableForSubstituionQuery request, CancellationToken cancellationToken)
+        public async Task<List<User>> Handle(GetWorkersAvailableForSubstitutionQuery request, CancellationToken cancellationToken)
         {
             var substitution = await _substitutionRepository.Get(request.SubstitutionId);
             var workers = await _userRepository.GetUsersWithSchedulesByRoleId(1);
